@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_EquityvalueFirmvalue"
+            android:icon="@drawable/baseline_camera_enhance_black_18dp"
+            android:title="EquityValue/FirmValue" />
+        <item
+            android:id="@+id/nav_WACCDetailed"
+            android:icon="@drawable/baseline_camera_enhance_black_18dp"
+            android:title="WACC:Detailed" />
+            <menu>
+                <item
+                    android:id="@+id/nav_WACCDetailedPageOne"
+                    android:icon="@drawable/baseline_camera_enhance_black_18dp"
+                    android:title="WACCDetailedPageOne" />
+                <item
+                    android:id="@+id/nav_WACCDetailedPageTwo"
+                    android:icon="@drawable/baseline_camera_enhance_black_18dp"
+                    android:title="WACCDetailedPageTwo" />
+
+            </menu>
+        <item
+            android:id="@+id/nav_WACCSimple"
+            android:icon="@drawable/baseline_camera_enhance_black_18dp"
+            android:title="WACC:Simple" />
+        <item
+            android:id="@+id/nav_APVDetailed"
+            android:icon="@drawable/baseline_camera_enhance_black_18dp"
+            android:title="APV:Detailed" />
+        <item
+            android:id="@+id/nav_APVSimple"
+            android:icon="@drawable/baseline_camera_enhance_black_18dp"
+            android:title="APV:Simple" />
+        <item
+        android:id="@+id/nav_DividendGrowthModel"
+        android:icon="@drawable/baseline_camera_enhance_black_18dp"
+        android:title="Dividend Growth Model" />
+        <item
+            android:id="@+id/nav_RealOptionsValuation"
+            android:icon="@drawable/baseline_camera_enhance_black_18dp"
+            android:title="Real Options Valuation" />
+        <item
+            android:id="@+id/nav_NotSure"
+            android:icon="@drawable/baseline_camera_enhance_black_18dp"
+            android:title="Not Sure" />
+    </group>
+</menu>
+
+
+
+
+

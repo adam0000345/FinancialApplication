@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+
+    android:layout_height="wrap_content">
+
+
+
+    <TextView
+        android:id="@+id/WACCTextView"
+        android:layout_width="335dp"
+        android:layout_height="303dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/WACCDescription"
+        android:layout_width="354dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="14dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCTextView" />
+
+    <TextView
+        android:id="@+id/FCFFDescription"
+        android:layout_width="352dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+
+        android:maxLines="100"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDescription" />
+
+    <TextView
+        android:id="@+id/CostOfCapitalDescription"
+        android:layout_width="356dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:maxLines="100"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FCFFDescription" />
+
+    <TextView
+        android:id="@+id/TerminalValueDescription"
+        android:layout_width="350dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CostOfCapitalDescription" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/WACCDetailedPageModelInputsTwoSGA"
+        android:layout_width="121dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="64dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsTwoSGAValue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageModelInputsTwoInitialEBIT"
+        android:layout_width="121dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsTwoInitialEBITValue"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoSGA" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageModelInputsTwoLastPeriodEBIT"
+        android:layout_width="121dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="44dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsTwoLastPeriodEBITValue"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoInitialEBIT" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageModelInputsTwoCapitalExpenditure"
+        android:layout_width="121dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsTwoCapitalExpenditureValue"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoLastPeriodEBIT" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageModelInputsTwoOperatingNWC"
+        android:layout_width="121dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsTwoOperatingNWCValue"
+        app:layout_constraintHorizontal_bias="0.793"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoCapitalExpenditure" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageModelInputsTwoStraightLineYears"
+        android:layout_width="121dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="47dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsTwoStraightLineValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoOperatingNWC" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageModelInputsTwoTaxRate"
+        android:layout_width="121dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="36dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoStraightLineYears" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageModelInputsTwoBaseYearDepreciation"
+        android:layout_width="121dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="30dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsTwoBaseYearDepreciationValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoTaxRate" />
+
+    <EditText
+
+        android:id="@+id/WACCDetailedPageModelInputsTwoSGAValue"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:text="0.00%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageModelInputsTwoInitialEBITValue"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        android:text="0.00%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoSGAValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageModelInputsTwoLastPeriodEBITValue"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:text="0.00%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoInitialEBITValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageModelInputsTwoCapitalExpenditureValue"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
+        android:text="0.00%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoLastPeriodEBITValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageModelInputsTwoOperatingNWCValue"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="0.00%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoCapitalExpenditureValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageModelInputsTwoStraightLineValue"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="21dp"
+        android:text="0 Years"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoOperatingNWCValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageModelInputsTwoTaxRateValue"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="9dp"
+        android:text="0.00%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toEndOf="@+id/WACCDetailedPageModelInputsTwoTaxRate"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoStraightLineValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageModelInputsTwoBaseYearDepreciationValue"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="9dp"
+        android:text="$0.00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsTwoTaxRateValue" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/WACCDetailedPageCostOfCapitalMarketRiskPremium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="116dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageCostOfCapitalMarketRiskPremiumValue"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalRiskFreeRate" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageCostOfCapitalLeveredCostOfEquity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageCostOfCapitalLeveredCostOfEquityValue"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalMarketRiskPremium" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageCostOfCapitalCostOfDebt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageCostOfCapitalCostOfDebtValue"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalLeveredCostOfEquity" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageCostOfCapitalWeightedAverageCostOfCapital"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageCostOfCapitalWeightedAverageCostOfCapitalValue"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalCostOfDebt" />
+
+    <TextView
+        android:id="@+id/WACCDetailedPageCostOfCapitalNumberOfShares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
+        android:layout_marginEnd="124dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageCostOfCapitalNumberOfSharesValue" />
+
+
+
+    <EditText
+        android:id="@+id/WACCDetailedPageCostOfCapitalMarketRiskPremiumValue"
+        android:layout_width="98dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalRiskFreeRateValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageCostOfCapitalLeveredCostOfEquityValue"
+        android:layout_width="92dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalMarketRiskPremiumValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageCostOfCapitalCostOfDebtValue"
+        android:layout_width="86dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalLeveredCostOfEquityValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageCostOfCapitalWeightedAverageCostOfCapitalValue"
+        android:layout_width="85dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalCostOfDebtValue" />
+
+    <EditText
+        android:id="@+id/WACCDetailedPageCostOfCapitalNumberOfSharesValue"
+        android:layout_width="103dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageCostOfCapitalWeightedAverageCostOfCapitalValue"
+        app:layout_constraintVertical_bias="0.872" />
+
+</android.support.constraint.ConstraintLayout>

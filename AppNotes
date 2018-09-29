@@ -1,0 +1,20 @@
+For Equity Value and Firm Value calculation, being able to pull the following data from Excel:
+"https://script.google.com/macros/s/AKfycbxw1d75kBSs7cPNPI0hlUSdwUrLNpfGw0eLUKkMjQitesAa7kfz/exec"
+
+For different model types, have different model types icons below Stock Symbol,
+have data accessible via the Stock symbol and the model type symbol,
+do not grab or load the whole excel sheet but only do it based off the part interested,
+insert into Excel sheet only the part you want to do by specifying Stock symbol and the model type
+
+Aswath's students could be beta testers
+
+It was quite a challenging task to use Apache POI on android with Dalvik VM.
+It is much easier to use Apache POI on Android 5+ with ART VM and Build Tools 21+
+
+Be able to share model packs with others, they can use their calculators to upload other people's models
+with their notes
+
+
+
+
+
