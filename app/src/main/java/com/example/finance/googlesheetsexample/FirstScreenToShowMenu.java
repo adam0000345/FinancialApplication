@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class FirstScreenToShowMenu extends AppCompatActivity{
 
-    //THIS IS THE MAIN ACTIVITY
+    //THIS IS THE MAIN ACTIVITY//
 
     Button getData;
     Button sendData;
