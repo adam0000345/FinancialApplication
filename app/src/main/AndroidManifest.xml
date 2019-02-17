@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.finance.googlesheetsexample">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.finance.googlesheetsexample">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NavBarAndTitle"
+            android:name=".FirstScreenToShowMenu"
             android:label="Financial Modeling App"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -53,19 +53,19 @@
             android:label="Financial Modeling App"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".WACCDetailedPageModelInputsOne"
+            android:name=".WACCDetailedFreeCashFlowInputs"
             android:label="Financial Modeling App"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-        android:name=".WACCDetailedPageModelInputsTwo"
+        android:name=".WACCDetailedFreeCashFlowInputs"
         android:label="Financial Modeling App"
         android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".WACCDetailedPageCostOfCapitalOne"
+            android:name=".WACCDetailedPageCostOfCapitalInputs"
             android:label="Financial Modeling App"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".WACCDetailedPageCostOfCapitalTwo"
+            android:name=".WACCDetailedPageCostOfCapitalInputs"
             android:label="Financial Modeling App"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity

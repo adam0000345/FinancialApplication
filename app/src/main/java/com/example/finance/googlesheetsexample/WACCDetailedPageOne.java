@@ -2,20 +2,10 @@ package com.example.finance.googlesheetsexample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.finance.googlesheetsexample.androidlabs.gsheets1.MyArrayAdapter;
-import com.example.finance.googlesheetsexample.androidlabs.gsheets1.MyDataModel;
-import com.facebook.drawee.backends.pipeline.Fresco;
-
-import java.util.ArrayList;
-
-public class WACCDetailedPageOne extends NavBarAndTitle {
+public class WACCDetailedPageOne extends FirstScreenToShowMenu {
 
 
 
@@ -154,7 +144,7 @@ public class WACCDetailedPageOne extends NavBarAndTitle {
                                 "to get correct EBIT; Depreciation can be found in " +
                                 "the Cash Flow Statement. " +
                                 "\n\nIf you choose the option 'Will input percent EBIT,' " +
-                                "the CGS and SGA ells will be greyed out.  If you choose " +
+                                "the CGS and SGA spells will be greyed out.  If you choose " +
                                 "the option 'Will input percent CGS and percent SGA,' the " +
                                 "initial EBIT will be calculated by default.");
 

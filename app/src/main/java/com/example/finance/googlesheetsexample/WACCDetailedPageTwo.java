@@ -3,24 +3,19 @@ package com.example.finance.googlesheetsexample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-public class WACCDetailedPageTwo extends NavBarAndTitle {
+public class WACCDetailedPageTwo extends FirstScreenToShowMenu {
 
 
     private TextView WACCDetailedPageTwoTitle;
@@ -33,6 +28,12 @@ public class WACCDetailedPageTwo extends NavBarAndTitle {
     private TextView WACCDetailedPageTwoTerminalGrowthRate;
     private Spinner WACCDetailedPageTwoTerminalGrowthRateSpinner;
     private TextView WACCDetailedPageTwoNotes;
+    private String SpinnerOneText;
+    private String SpinnerTwoText;
+    private String SpinnerThreeText;
+    private String SpinnerFourText;
+
+
     //might have to use spinner adapters
 
     @Override
@@ -51,11 +52,33 @@ public class WACCDetailedPageTwo extends NavBarAndTitle {
         WACCDetailedPageTwoTerminalGrowthRate = (TextView) this.findViewById(R.id.WACCDetailedPageTwoTerminalGrowthRate);
         WACCDetailedPageTwoNotes = (TextView) this.findViewById(R.id.WACCDetailedPageTwoNotes);
 
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //leverage the Snackbar to make user aware of any errors in their data
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Data Submitted", null).show();
+
+
+
+                WACCDetailedObject.setOperatingIncomeOption(SpinnerOneText);
+                WACCDetailedObject.setDepreciationOption(SpinnerTwoText);
+                WACCDetailedObject.setWACCOption(SpinnerThreeText);
+                WACCDetailedObject.setTerminalGrowthRateOption(SpinnerFourText);
+
+
+
+            }
+        });
 
         addItemsOnSpinner1();
         addItemsOnSpinner2();
         addItemsOnSpinner3();
         addItemsOnSpinner4();
+
+
+
 
 
 
@@ -263,8 +286,8 @@ public class WACCDetailedPageTwo extends NavBarAndTitle {
         WACCPageTwoOperatingIncomeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
-                String text = item.toString();
-                getWaccDetailedObject().setOperatingIncomeOption(text);
+                SpinnerOneText = item.toString();
+
             }
             public void onNothingSelected(AdapterView<?> parent) {
                 return;
@@ -294,8 +317,8 @@ public class WACCDetailedPageTwo extends NavBarAndTitle {
         WACCDetailedPageTwoDepreciationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
-                String text = item.toString();
-                getWaccDetailedObject().setDepreciationOption(text);
+                SpinnerTwoText = item.toString();
+
             }
             public void onNothingSelected(AdapterView<?> parent) {
                 return;
@@ -323,8 +346,8 @@ public class WACCDetailedPageTwo extends NavBarAndTitle {
         WACCDetailedPageTwoWACCSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
-                String text = item.toString();
-                getWaccDetailedObject().setWACCOption(text);
+                SpinnerThreeText = item.toString();
+
             }
             public void onNothingSelected(AdapterView<?> parent) {
                 return;
@@ -353,13 +376,15 @@ public class WACCDetailedPageTwo extends NavBarAndTitle {
         WACCDetailedPageTwoTerminalGrowthRateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
-                String text = item.toString();
-                getWaccDetailedObject().setTerminalGrowthRateOption(text);
+                SpinnerFourText = item.toString();
+
             }
             public void onNothingSelected(AdapterView<?> parent) {
                 return;
             }
         });
     }
+
+
 
 }

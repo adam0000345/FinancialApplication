@@ -2,17 +2,11 @@ package com.example.finance.googlesheetsexample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-
-public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
+public class WACCDetailedPageTerminalValue extends FirstScreenToShowMenu {
 
 
 
@@ -27,11 +21,15 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
     private TextView WACCDetailedPageTerminalValueTerminalReinvestmentRateValue;
     private TextView WACCDetailedPageTerminalValueTerminalGrowthRateValue;
     private TextView WACCDetailedPageTerminalValueTerminalWACCValue;
+    private WACCDetailedObject waccDetailedObject;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        //waccDetailedObject = FirstScreenToShowMenu.WACCDetailedObjectGet();
 
 
         getLayoutInflater().inflate(R.layout.waccdetailedpageterminalvalue,
@@ -59,7 +57,7 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
                 //TODO: look into setting text like above way
                 //Logic
                 Intent intent = new Intent(WACCDetailedPageTerminalValue.this, PopUpWindow.class);
-                intent.putExtra("flagExcelViewer", "false");
+                intent.putExtra("isExcelPopup", "false");
                 intent.putExtra("message", "If you chose the option to calculate g using the " +
                         "formula ROICxRR in the 'Few Key Questions' page, you will input the ROIC assumption here. " +
                         "Otherwise, it will be grayed out.  If you have a firm with exceptional competitive " +
@@ -82,8 +80,8 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
                 if(!hasFocus) {
                     //SAVE THE DATA
 
-                    getWaccDetailedObject().setTerminalROIC(Double.valueOf(WACCDetailedPageTerminalValueTerminalROICValue.getText().toString()));
-                    Log.d("TEST", getWaccDetailedObject().getCompanyName());
+                    //waccDetailedObject.setTerminalROIC(Double.parseDouble(WACCDetailedPageTerminalValueTerminalROICValue.getText().toString()));
+                    //Log.d("TEST", getWaccDetailedObject().getCompanyName());
                 }
 
             }
@@ -103,7 +101,7 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
                 //Logic
                 Intent intent = new Intent(WACCDetailedPageTerminalValue.this, PopUpWindow.class);
 
-                intent.putExtra("flagExcelViewer", "false");
+                intent.putExtra("isExcelPopup", "false");
                 intent.putExtra("message", "If you chose the option to calculate g using the " +
                         "formula ROICxRR in the 'Few Key Questions' page, you will input the reinvestment rate (RR) " +
                         "assumption here.  Otherwise, it will be grayed out.  Enter an RR that is consistent with a g " +
@@ -132,10 +130,10 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
                 if(!hasFocus) {
                     //SAVE THE DATA
 
-                    getWaccDetailedObject().setTerminalReinvestmentRate(
-                            Double.valueOf(WACCDetailedPageTerminalValueTerminalReinvestmentRateValue
-                                    .getText().toString()));
-                    Log.d("TEST", getWaccDetailedObject().getCompanyName());
+//                    waccDetailedObject.setTerminalReinvestmentRate(
+//                            Double.parseDouble(WACCDetailedPageTerminalValueTerminalReinvestmentRateValue
+//                                    .getText().toString()));
+                    //Log.d("TEST", getWaccDetailedObject().getCompanyName());
                 }
 
             }
@@ -154,7 +152,7 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
 
                 //Logic
                 Intent intent = new Intent(WACCDetailedPageTerminalValue.this, PopUpWindow.class);
-                intent.putExtra("flagExcelViewer", "false");
+                intent.putExtra("isExcelPopup", "false");
                 intent.putExtra("message", "Terminal Value (TV) is the continuing value of " +
                         "the business after the detailed forecast (or, 'proforma') period ends.  It is " +
                         "calculated using the constant growth model: \n\n TV = FCFFr + (WACCr-g), \n\n" +
@@ -191,10 +189,10 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
                 if(!hasFocus) {
                     //SAVE THE DATA
 
-                    getWaccDetailedObject().setTerminalReinvestmentRate(
-                            Double.valueOf(WACCDetailedPageTerminalValueTerminalGrowthRateValue
-                                    .getText().toString()));
-                    Log.d("TEST", getWaccDetailedObject().getCompanyName());
+//                    waccDetailedObject.setTerminalReinvestmentRate(
+//                            Double.parseDouble(WACCDetailedPageTerminalValueTerminalGrowthRateValue
+//                                    .getText().toString()));
+                    //Log.d("TEST", getWaccDetailedObject().getCompanyName());
                 }
 
             }
@@ -216,7 +214,7 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
 
                 //Logic
                 Intent intent = new Intent(WACCDetailedPageTerminalValue.this, PopUpWindow.class);
-                intent.putExtra("flagExcelViewer", "false");
+                intent.putExtra("isExcelPopup", "false");
                 intent.putExtra("message", "You can choose to input a long-run terminal WACC " +
                         "that is different from the default WACC, which is the cost of capital for the proforma period. " +
                         "One option may be the industry average.  Another, the market average.");
@@ -241,10 +239,10 @@ public class WACCDetailedPageTerminalValue extends NavBarAndTitle {
                 if(!hasFocus) {
                     //SAVE THE DATA
 
-                    getWaccDetailedObject().setTerminalReinvestmentRate(
-                            Double.valueOf(WACCDetailedPageTerminalValueTerminalWACCValue
-                                    .getText().toString()));
-                    Log.d("TEST", getWaccDetailedObject().getCompanyName());
+//                    waccDetailedObject.setTerminalReinvestmentRate(
+//                            Double.parseDouble(WACCDetailedPageTerminalValueTerminalWACCValue
+//                                    .getText().toString()));
+                    //Log.d("TEST", getWaccDetailedObject().getCompanyName());
                 }
 
             }

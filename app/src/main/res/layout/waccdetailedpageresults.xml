@@ -1,6 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/WACCDetailedPageResults"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WACCDetailedPageResults">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsRevenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:text="Revenue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsCostOfGoods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Cost Of Goods Sold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsRevenue" />
+
+            <TextView
+                android:id="@+id/WACCDetailedPageResultsSGA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="SGA and R+D"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsCostOfGoods" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsEBIT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="EBIT (Operating Income)"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageResultsSGA" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsDepreciation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Depreciation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsEBIT" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsOperatingCashFlow"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginTop="10dp"
+                android:text="Operating Cash Flow (OCF)"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsDepreciation" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsCashExpenditure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Cash Expenditure"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsOperatingCashFlow" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsChangeInNetWorkingCapital"
+                android:layout_width="169dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:scrollHorizontally="false"
+                android:text="Change in Net\nWorking Capital"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsCashExpenditure" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsFreeCashFlow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="9dp"
+                android:text="Free Cash Flow (FCFF)"
+                app:layout_constraintBottom_toTopOf="@+id/WACCDetailedResultsWACC"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsChangeInNetWorkingCapital" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsWACC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="WACC"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsFreeCashFlow" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsDiscountFactor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:text="Discount Factor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsWACC" />
+
+            <TextView
+                android:id="@+id/WACCDetailedResultsPV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="60dp"
+                android:text="PV(FCFF)"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedResultsDiscountFactor"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="193dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

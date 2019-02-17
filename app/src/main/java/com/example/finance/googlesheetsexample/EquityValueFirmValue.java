@@ -1,38 +1,24 @@
 package com.example.finance.googlesheetsexample;
 
 import android.app.ProgressDialog;
-import android.graphics.ColorSpace;
-import android.media.audiofx.DynamicsProcessing;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 
 import com.example.finance.googlesheetsexample.androidlabs.gsheets1.JSONparser;
 import com.example.finance.googlesheetsexample.androidlabs.gsheets1.MyArrayAdapter;
 import com.example.finance.googlesheetsexample.androidlabs.gsheets1.MyDataModel;
-import com.example.finance.googlesheetsexample.post.PostData;
 import com.example.finance.googlesheetsexample.util.InternetConnection;
 import com.example.finance.googlesheetsexample.util.Keys;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -41,22 +27,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.text.BreakIterator;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.net.ssl.HttpsURLConnection;
 
 
-public class EquityValueFirmValue extends NavBarAndTitle {
+public class EquityValueFirmValue extends FirstScreenToShowMenu {
 
 
         TextView tvStockTickerSymbol;

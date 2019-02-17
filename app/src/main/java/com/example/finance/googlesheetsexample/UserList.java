@@ -35,7 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class UserList extends NavBarAndTitle {
+public class UserList extends FirstScreenToShowMenu {
 
     private ListView listView;
     private ArrayList<MyDataModel> list;
@@ -49,7 +49,7 @@ public class UserList extends NavBarAndTitle {
         Fresco.initialize(this);
 
         //!!!!!!!!!!!!!FORMAT THIS EVENTUALLY!!!!!!!!!!!!!!!!!!!!!
-        //Below is repeat code from the NavBarAndTitle, NavBarAndTitle and Userlist use
+        //Below is repeat code from the FirstScreenToShowMenu, FirstScreenToShowMenu and Userlist use
         //the same code as below, see if there is a way to condense this
 
         Toolbar toolbar = findViewById(R.id.toolbar);

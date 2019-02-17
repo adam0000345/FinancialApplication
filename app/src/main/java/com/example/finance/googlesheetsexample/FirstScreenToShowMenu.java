@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 
 import com.example.finance.googlesheetsexample.post.PostData;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,9 @@ import java.util.List;
 /**
  * Created by ADJ on 2/21/2017.
  */
-public class NavBarAndTitle extends AppCompatActivity{
+public class FirstScreenToShowMenu extends AppCompatActivity{
+
+    //THIS IS THE MAIN ACTIVITY
 
     Button getData;
     Button sendData;
@@ -41,7 +44,9 @@ public class NavBarAndTitle extends AppCompatActivity{
     private static boolean isLaunch = true;
 
 
-    private WACCDetailedObject waccDetailedObject;
+    //TODO check if protected and static is necessary
+    //TODO figure out a way to pass public data between activities
+
 
 
     private DrawerLayout mDrawerLayout;
@@ -58,7 +63,7 @@ public class NavBarAndTitle extends AppCompatActivity{
         actionbar.setHomeAsUpIndicator(R.drawable.baseline_menu_black_18dp);
         frameLayout = (FrameLayout)findViewById(R.id.content_frame);
 
-        waccDetailedObject = new WACCDetailedObject();
+
 
 
         expandableListView = findViewById(R.id.expandableListView);
@@ -111,9 +116,7 @@ public class NavBarAndTitle extends AppCompatActivity{
 
     };
 
-    public  WACCDetailedObject getWaccDetailedObject(){
-        return waccDetailedObject;
-    }
+
 
     @Override
     public void onBackPressed() {
@@ -121,9 +124,13 @@ public class NavBarAndTitle extends AppCompatActivity{
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            super.onBackPressed ();
         }
     }
+
+
+
+
 
     private void displaySelectedScreen(String MenuName) {
 
@@ -139,6 +146,7 @@ public class NavBarAndTitle extends AppCompatActivity{
         }
 
         //initializing the Activity object which is selected
+
         switch (MenuName) {
             case "WACCDetailedPageOne":
                 Intent i = new Intent(getApplicationContext(), WACCDetailedPageOne.class);
@@ -155,33 +163,19 @@ public class NavBarAndTitle extends AppCompatActivity{
 
         }
 
+
         switch (MenuName) {
-            case "WACCDetailedPageModelInputsOne":
-                Intent i = new Intent(getApplicationContext(), WACCDetailedPageModelInputsOne.class);
+            case "WACCDetailedFreeCashFlowInputs":
+                Intent i = new Intent(getApplicationContext(), WACCDetailedFreeCashFlowInputs.class);
                 startActivity(i);
                 break;
 
         }
 
-        switch (MenuName) {
-            case "WACCDetailedPageModelInputsTwo":
-                Intent i = new Intent(getApplicationContext(), WACCDetailedPageModelInputsTwo.class);
-                startActivity(i);
-                break;
-
-        }
 
         switch (MenuName) {
-            case "WACCDetailedPageCostOfCapitalOne":
-                Intent i = new Intent(getApplicationContext(), WACCDetailedPageCostOfCapitalOne.class);
-                startActivity(i);
-                break;
-
-        }
-
-        switch (MenuName) {
-            case "WACCDetailedPageCostOfCapitalTwo":
-                Intent i = new Intent(getApplicationContext(), WACCDetailedPageCostOfCapitalTwo.class);
+            case "WACCDetailedPageCostOfCapitalInputs":
+                Intent i = new Intent(getApplicationContext(), WACCDetailedPageCostOfCapitalInputs.class);
                 startActivity(i);
                 break;
 
@@ -257,16 +251,10 @@ public class NavBarAndTitle extends AppCompatActivity{
         childModel = new MenuModel("WACCDetailedPageTwo", false, false);
         childModelsList.add(childModel);
 
-        childModel = new MenuModel("WACCDetailedPageModelInputsOne", false, false);
+        childModel = new MenuModel("WACCDetailedFreeCashFlowInputs", false, false);
         childModelsList.add(childModel);
 
-        childModel = new MenuModel("WACCDetailedPageModelInputsTwo", false, false);
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("WACCDetailedPageCostOfCapitalOne", false, false);
-        childModelsList.add(childModel);
-
-        childModel = new MenuModel("WACCDetailedPageCostOfCapitalTwo", false, false);
+        childModel = new MenuModel("WACCDetailedPageCostOfCapitalInputs", false, false);
         childModelsList.add(childModel);
 
         childModel = new MenuModel("WACCDetailedPageTerminalValue", false, false);

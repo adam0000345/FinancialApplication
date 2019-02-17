@@ -13,13 +13,9 @@
             android:title="WACC:Detailed" />
             <menu>
                 <item
-                    android:id="@+id/nav_WACCDetailedPageOne"
+                    android:id="@+id/nav_WACCDetailedFreeCashFlow"
                     android:icon="@drawable/baseline_camera_enhance_black_18dp"
-                    android:title="WACCDetailedPageOne" />
-                <item
-                    android:id="@+id/nav_WACCDetailedPageTwo"
-                    android:icon="@drawable/baseline_camera_enhance_black_18dp"
-                    android:title="WACCDetailedPageTwo" />
+                    android:title="WACCDetailedFreeCashFlow" />
 
             </menu>
         <item

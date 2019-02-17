@@ -1,182 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+
+<android.support.design.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/WACCDetailedPageModelInputsOneTitle"
-        android:layout_width="296dp"
-        android:layout_height="34dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginStart="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/WACCDetailedPageModelInputsOneCompanyNameInput"
-        android:layout_width="89dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.76"
-        app:layout_constraintStart_toEndOf="@+id/WACCDetailedPageModelInputsOneCompanyNameText"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneTitle" />
 
-    <TextView
-        android:id="@+id/WACCDetailedPageModelInputsOneCompanyNameText"
-        android:layout_width="99dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneTitle" />
 
-    <TextView
-        android:id="@+id/WACCDetailedPageModelInputsOneBaseYear"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical" />-->
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsTitle"
+                android:layout_width="296dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginEnd="44dp"
+                android:layout_marginRight="44dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsCompanyNameInput"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.76"
+                app:layout_constraintStart_toEndOf="@+id/WACCDetailedFreeCashFlowInputsCompanyNameText"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsTitle" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsCompanyNameText"
+                android:layout_width="99dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsTitle" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsBaseYear"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsBaseYearValue"
+                app:layout_constraintHorizontal_bias="0.203"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsCompanyNameText" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsBaseYearValue"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="44dp"
+                android:text="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsCompanyNameInput" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsNumberForecastPeriods"
+                android:layout_width="139dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="168dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsNumberForecastPeriodsValue"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsBaseYear" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsNumberForecastPeriodsValue"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="44dp"
+                android:text="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsBaseYearValue" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsBaseYearRevenue"
+                android:layout_width="142dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="38dp"
+                android:layout_marginEnd="109dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsBaseYearRevenueValue"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsNumberForecastPeriods" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsBaseYearRevenueValue"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="44dp"
+                android:text="0.00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsNumberForecastPeriodsValue" />
+
+                <TextView
+                    android:id="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRate"
+                    android:layout_width="134dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="27dp"
+                    android:text="TextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsBaseYearRevenue" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRateValue"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="44dp"
+                android:text="0.00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsBaseYearRevenueValue" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRateToTerminal"
+                android:layout_width="134dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="29dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRate" />
+
+                <TextView
+                    android:id="@+id/WACCDetailedFreeCashFlowInputsCostGoodsSold"
+                    android:layout_width="101dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="134dp"
+                    android:text="TextView"
+                    app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsCostGoodsSoldValue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRateToTerminal" />
+
+                <EditText
+                    android:id="@+id/WACCDetailedFreeCashFlowInputsCostGoodsSoldValue"
+                    android:layout_width="96dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="70dp"
+                    android:text="0.00"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRateToTerminalToggleButton" />
+
+            <ToggleButton
+                android:id="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRateToTerminalToggleButton"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="21dp"
+                android:layout_marginEnd="45dp"
+                android:text="ToggleButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRateToTerminal"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRateValue" />
+
+                <TextView
+                    android:id="@+id/WACCDetailedFreeCashFlowInputsSGA"
+                    android:layout_width="89dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="SGandA"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsCostGoodsSold" />
+
+                <TextView
+                    android:id="@+id/WACCDetailedFreeCashFlowInputsInitialEBIT"
+                    android:layout_width="121dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="64dp"
+                    android:text="TextView"
+                    app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsInitialEBITValue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsSGA" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsLastPeriodEBIT"
+                android:layout_width="121dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="166dp"
+                android:layout_marginTop="44dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsLastPeriodEBITValue"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsInitialEBIT" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsCapitalExpenditure"
+                android:layout_width="121dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="166dp"
+                android:layout_marginTop="32dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsCapitalExpenditureValue"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsLastPeriodEBIT" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsOperatingNWC"
+                android:layout_width="121dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="166dp"
+                android:layout_marginTop="32dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsOperatingNWCValue"
+                app:layout_constraintHorizontal_bias="0.793"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsCapitalExpenditure" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsStraightLineYears"
+                android:layout_width="121dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="47dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsStraightLineValue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsOperatingNWC" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsTaxRate"
+                android:layout_width="121dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="36dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsStraightLineYears" />
+
+            <TextView
+                android:id="@+id/WACCDetailedFreeCashFlowInputsBaseYearDepreciation"
+                android:layout_width="121dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="47dp"
+                android:layout_marginBottom="30dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsTaxRate" />
+
+                <EditText
+
+                    android:id="@+id/WACCDetailedFreeCashFlowInputsSGAValue"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="187dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="0.00"
+                    app:layout_constraintBottom_toTopOf="@+id/WACCDetailedFreeCashFlowInputsInitialEBITValue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/WACCDetailedFreeCashFlowInputsSGA"
+                    app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsCostGoodsSoldValue" />
+
+                <EditText
+                    android:id="@+id/WACCDetailedFreeCashFlowInputsInitialEBITValue"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="109dp"
+                    android:layout_marginTop="24dp"
+                    android:text="0.00"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/WACCDetailedFreeCashFlowInputsInitialEBIT"
+                    app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsSGAValue" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsLastPeriodEBITValue"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:text="0.00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsInitialEBITValue" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsCapitalExpenditureValue"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="20dp"
+                android:text="0.00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsLastPeriodEBITValue" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsOperatingNWCValue"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:text="0.00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsCapitalExpenditureValue" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsStraightLineValue"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="21dp"
+                android:text="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsOperatingNWCValue" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsTaxRateValue"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="9dp"
+                android:text="0.00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.868"
+                app:layout_constraintStart_toEndOf="@+id/WACCDetailedFreeCashFlowInputsTaxRate"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsStraightLineValue" />
+
+            <EditText
+                android:id="@+id/WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="9dp"
+                android:text="0.00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/WACCDetailedFreeCashFlowInputsTaxRateValue" />
+
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+
+
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsOneBaseYearValue"
-        app:layout_constraintHorizontal_bias="0.203"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneCompanyNameText" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right">
 
-    <EditText
-        android:id="@+id/WACCDetailedPageModelInputsOneBaseYearValue"
-        android:layout_width="89dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginTop="12dp"
-        android:text="YYYY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneCompanyNameInput" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:color/transparent" />
 
-    <TextView
-        android:id="@+id/WACCDetailedPageModelInputsOneNumberForecastPeriods"
-        android:layout_width="139dp"
-        android:layout_height="23dp"
-        android:layout_marginEnd="168dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsOneNumberForecastPeriodsValue"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneBaseYear" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Submit"
+            android:elevation="16dp"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </FrameLayout>
 
-    <EditText
-        android:id="@+id/WACCDetailedPageModelInputsOneNumberForecastPeriodsValue"
-        android:layout_width="89dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneBaseYearValue" />
 
-    <TextView
-        android:id="@+id/WACCDetailedPageModelInputsOneBaseYearRevenue"
-        android:layout_width="142dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="38dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsOneBaseYearRevenueValue"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneNumberForecastPeriods" />
 
-    <EditText
-        android:id="@+id/WACCDetailedPageModelInputsOneBaseYearRevenueValue"
-        android:layout_width="89dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginTop="27dp"
-        android:text="$0.00"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneNumberForecastPeriodsValue" />
 
-    <TextView
-        android:id="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRate"
-        android:layout_width="134dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="27dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneBaseYearRevenue" />
 
-    <EditText
-        android:id="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRateValue"
-        android:layout_width="89dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginTop="27dp"
-        android:text="0.00%"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneBaseYearRevenueValue" />
-
-    <TextView
-        android:id="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRateToTerminal"
-        android:layout_width="134dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="29dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRate" />
-
-    <TextView
-        android:id="@+id/WACCDetailedPageModelInputsOneCostGoodsSold"
-        android:layout_width="101dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="34dp"
-        android:layout_marginEnd="134dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/WACCDetailedPageModelInputsOneCostGoodsSoldValue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRateToTerminal" />
-
-    <EditText
-        android:id="@+id/WACCDetailedPageModelInputsOneCostGoodsSoldValue"
-        android:layout_width="89dp"
-        android:layout_height="44dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginTop="30dp"
-        android:text="0.00%"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRateToTerminalToggleButton" />
-
-    <ToggleButton
-        android:id="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRateToTerminalToggleButton"
-        android:layout_width="89dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="21dp"
-        android:text="ToggleButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRateToTerminal"
-        app:layout_constraintTop_toBottomOf="@+id/WACCDetailedPageModelInputsOneAnnualRevenueGrowthRateValue" />
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.design.widget.CoordinatorLayout>

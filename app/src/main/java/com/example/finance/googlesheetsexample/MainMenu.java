@@ -1,25 +1,11 @@
 package com.example.finance.googlesheetsexample;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.ExpandableListView;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-public class MainMenu extends NavBarAndTitle {
+public class MainMenu extends FirstScreenToShowMenu {
 
 
     /**
