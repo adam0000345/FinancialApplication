@@ -94,6 +94,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         viewHolder.WACCDetailedResultsRevenueNumber.setText(mDataset.get(i).get("WACCDetailedResultsRevenueNumber"));
         viewHolder.WACCDetailedResultsCostOfGoodsNumber.setText(mDataset.get(i).get("WACCDetailedResultsCostOfGoodsNumber"));
         viewHolder.WACCDetailedPageResultsSGACostNumber.setText(mDataset.get(i).get("WACCDetailedResultsSGANumber"));
+        viewHolder.WACCDetailedResultsEBITNumber.setText(mDataset.get(i).get("WACCDetailedResultsEBITNumber"));
         viewHolder.WACCDetailedResultsDepreciationNumber.setText(mDataset.get(i).get("WACCDetailedResultsDepreciationNumber"));
         viewHolder.WACCDetailedResultsOperatingCashFlowNumber.setText(mDataset.get(i).get("WACCDetailedResultsOperatingCashFlowNumber"));
         viewHolder.WACCDetailedResultsCashExpenditureNumber.setText(mDataset.get(i).get("WACCDetailedResultsCashExpenditureNumber"));

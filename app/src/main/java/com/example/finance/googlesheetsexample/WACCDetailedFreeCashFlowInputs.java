@@ -755,18 +755,11 @@ public class WACCDetailedFreeCashFlowInputs extends FirstScreenToShowMenu {
             }
         });
 
-        //Base year depreciation, only have this on if Straight Line is not selected
-        TextView tvBaseYearDepreciation = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
-        tvBaseYearDepreciation.setVisibility(View.INVISIBLE);
-        TextView tvBaseYearDepreciationValue = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
-        tvBaseYearDepreciationValue.setVisibility(View.INVISIBLE);
 
-        if (WACCDetailedObject.getDepreciationOption() != "Will use straight line rule") {
 
-            tvBaseYearDepreciation = (TextView) findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
-            tvBaseYearDepreciation.setVisibility(View.VISIBLE);
-            tvBaseYearDepreciationValue = (TextView) findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue);
-            tvBaseYearDepreciationValue.setVisibility(View.VISIBLE);
+
+
+
 
             WACCDetailedFreeCashFlowInputsBaseYearDepreciation = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
 
@@ -821,7 +814,7 @@ public class WACCDetailedFreeCashFlowInputs extends FirstScreenToShowMenu {
 
                 }
             });
-        }
+
 
 
 
@@ -883,18 +876,16 @@ public class WACCDetailedFreeCashFlowInputs extends FirstScreenToShowMenu {
                         WACCDetailedFreeCashFlowInputsOperatingNWCValue.getText().toString()));
 
 
-                if (WACCDetailedObject.getDepreciationOption() ==
-                        "Will use straight line rule") {
 
                     WACCDetailedObject.setStraightLineDepreciationYears(Integer.valueOf(
                             WACCDetailedFreeCashFlowInputsStraightLineYearsValue.getText().toString()));
 
-                } else {
+
 
                     WACCDetailedObject.setBaseYearDepreciation(Double.parseDouble(
                             WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue.getText().toString()));
 
-                }
+
 
                 WACCDetailedObject.setOperatingNWC(Double.parseDouble(
                         WACCDetailedFreeCashFlowInputsOperatingNWCValue.getText().toString()));

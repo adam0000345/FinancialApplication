@@ -212,22 +212,14 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
 
             }
-            //if else just use initial EBIT, and final EBIT
-            if (WACCDetailedObject.getOperatingIncomeOption() !=
-                    "Will input percent CGS and percent SGA"){
-                InitialEBITPercentageOfRevenue =
-                        WACCDetailedObject.getCostOfGoodsSoldAsPercentage();
-
-
-                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
-                        String.valueOf(InitialEBITPercentageOfRevenue * CurrentYearRevenue));
-
-
-            }
 
 
 
-            if (currentyear < (WACCDetailedObject.getNumberOfForecastPeriods()-1)
+
+
+
+            //HANDLE THE TERMINAL PERIOD HERE
+            if (currentyear == (WACCDetailedObject.getNumberOfForecastPeriods()-1)
                     && WACCDetailedObject.getDepreciationOption()
                     != "Will assume Depreciation = Capex") {
 
@@ -242,18 +234,6 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
 
             } else if (WACCDetailedObject.getDepreciationOption()
-                    != "Will assume Depreciation = Capex") {
-                //use above
-                //Operating Income Calculation
-                InitialEBITPercentageOfRevenue =
-                        WACCDetailedObject.getInitialEBIT();
-
-                //EBIT (Operating Income)
-
-                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
-                        String.valueOf(CurrentYearRevenue * InitialEBITPercentageOfRevenue));
-
-            } else if (WACCDetailedObject.getDepreciationOption()
                     == "Will assume Depreciation = Capex" &&
             WACCDetailedObject.getOperatingIncomeOption() ==
                     "Will input percent CGS and percent SGA") {
@@ -263,11 +243,18 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                 CustomEBIT = GrossProfit
                         - (SGACost + (CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue));
 
+                //EBIT (Operating Income)
+
+                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
+                        String.valueOf(CustomEBIT));
+
             }  else if (WACCDetailedObject.getDepreciationOption()
                     == "Will use straight line rule" &&
                     WACCDetailedObject.getOperatingIncomeOption() ==
                             "Will input percent CGS and percent SGA"
                     ) {
+
+
 
                 StraightLineDepreciationNumberOfYears
                         = WACCDetailedObject
@@ -287,12 +274,27 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                 CustomEBIT = GrossProfit - (SGACost
                         + (BaseYearDepreciation / StraightLineDepreciationNumberOfYears));
 
+                //EBIT (Operating Income)
+
+                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
+                        String.valueOf(CustomEBIT));
+
             }
 
             else if (WACCDetailedObject.getOperatingIncomeOption()
                     == "Will input percent EBIT (Operating Margin)"
                     && WACCDetailedObject.getDepreciationOption()
                     == "Will use straight line rule") {
+
+                //use above
+                //Operating Income Calculation
+                InitialEBITPercentageOfRevenue =
+                        WACCDetailedObject.getInitialEBIT();
+
+                //EBIT (Operating Income)
+
+                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
+                        String.valueOf(CurrentYearRevenue * InitialEBITPercentageOfRevenue));
 
                 StraightLineDepreciationNumberOfYears
                         = WACCDetailedObject
@@ -304,8 +306,26 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
                 //Depreciation
 
-                data.get(currentyear).put("WACCDetailedResultsDepreciationNumber",
-                        String.valueOf(BaseYearDepreciation));
+                //Year T Depreciation as:
+                //DT = DT-1 + [CapexT/N]
+
+                if (currentyear == 0) {
+                    double CurrentYearDepreciation = BaseYearDepreciation;
+                    data.get(currentyear).put("WACCDetailedResultsDepreciationNumber",
+                            String.valueOf(BaseYearDepreciation));
+                } else{
+                    double CurrentYearDepreciation = Double.valueOf(data.get(currentyear-1)
+                            .get("WACCDetailedResultsDepreciationNumber")) +
+                            (
+                                    ((double) ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue)/
+                                            StraightLineDepreciationNumberOfYears))
+                            );
+                    data.get(currentyear).put("WACCDetailedResultsDepreciationNumber",
+                            String.valueOf(CurrentYearDepreciation));
+                }
+
+
+
 
 
                 FreeCashFlow = InitialEBITPercentageOfRevenue * (1 - TaxRate)
@@ -317,10 +337,7 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
             }
 
 
-                //EBIT (Operating Income)
 
-                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
-                        String.valueOf(CustomEBIT));
 
 
 
@@ -372,55 +389,6 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
