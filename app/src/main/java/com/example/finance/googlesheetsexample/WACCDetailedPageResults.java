@@ -99,25 +99,11 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
         }
 
 
-//        getLayoutInflater().inflate(R.layout.waccdetailedpageresults, frameLayout);
-//
-//        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-//        mRecyclerView.setHasFixedSize(true);
-//        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//        mAdapter = new MainAdapter(data);
-//        mRecyclerView.setAdapter(mAdapter);
-
-
         //http://pages.stern.nyu.edu/~adamodar/New_Home_Page/AccPrimer/accstate.htm
 
         //http://people.stern.nyu.edu/adamodar/pdfiles/eqnotes/valenhdcf.pdf8
 
 
-        //iterate through the multiple years selected and do
-        //following calculations
-
-        //currentyear<WACCDetailedObject.getNumberOfForecastPeriods()
 
 
 
@@ -149,8 +135,7 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
             //Working Capital - (Principal Repaid - New Debt Issues) - Preferred Dividend
             //-new Debt Issues = Free Cash Flow to Equity
 
-            Double datas = FinanceModelSingleton.getData();
-            CurrentYearRevenue = datas;
+            CurrentYearRevenue = WACCDetailedObject.getCurrentYearRevenue();
 
             CapitalExpenditurePercentageOfRevenue =
                     WACCDetailedObject.getCapitalExpenditure();
@@ -166,9 +151,9 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
             //Working Capital = Current Assets - Current Liabilities
 
 
-
-
-
+            //If CGS and SGA are inputted use to calculate EBIT, yearly SGA (R&D), and COGS,
+            // otherwise, just use
+            //the Ebit provided
             if (WACCDetailedObject.getOperatingIncomeOption() ==
                     "Will input percent CGS and percent SGA");
             {
@@ -217,6 +202,25 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
                 data.get(currentyear).put("WACCDetailedPageResultsSGACostNumber",
                         String.valueOf(SGACost));
+
+                //calculate initial EBIT and final EBIT here
+                //EBIT = Revenue - Cost of Goods Sold - Selling, General, & Admin Expense
+                //if depreciation charges are not included in CGS and SGA, then it would need to
+                //be additionally subtracted
+                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
+                        String.valueOf(CurrentYearRevenue - CostOfGoodsSold - SGACost));
+
+
+            }
+            //if else just use initial EBIT, and final EBIT
+            if (WACCDetailedObject.getOperatingIncomeOption() !=
+                    "Will input percent CGS and percent SGA"){
+                InitialEBITPercentageOfRevenue =
+                        WACCDetailedObject.getCostOfGoodsSoldAsPercentage();
+
+
+                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
+                        String.valueOf(InitialEBITPercentageOfRevenue * CurrentYearRevenue));
 
 
             }

@@ -1,10 +1,16 @@
 package com.example.finance.googlesheetsexample;
 
 
+import android.app.Application;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class WACCDetailedObject {
+
+
+
+    // Create the instance
+    private static WACCDetailedObject instance;
 
     private static String OperatingIncomeOption;
     private static String DepreciationOption;
@@ -42,6 +48,17 @@ public class WACCDetailedObject {
     private static int StraightLineDepreciationYears;
     private static double TaxRate;
     private static double BaseYearDepreciation;
+
+    public static WACCDetailedObject getInstance() {
+        if (instance == null) {
+            synchronized (WACCDetailedObject.class) {
+                if (instance == null)
+                    instance = new WACCDetailedObject();
+            }
+        }
+        // Return the instance
+        return instance;
+    }
 
     public static String getOperatingIncomeOption() {
         return OperatingIncomeOption;
@@ -103,8 +120,8 @@ public class WACCDetailedObject {
         return CurrentYearRevenue;
     }
 
-    public static void setCurrentYearRevenue(double CurrentYearRevenue) {
-        CurrentYearRevenue = CurrentYearRevenue;
+    public static void setCurrentYearRevenue(double currentYearRevenue) {
+        CurrentYearRevenue = currentYearRevenue;
     }
 
     public static double getAnnualRevenueGrowthPercentage() {
@@ -239,8 +256,8 @@ public class WACCDetailedObject {
         return WACC;
     }
 
-    public static void setWACC(double WACC) {
-        WACCDetailedObject.WACC = WACC;
+    public static void setWACC(double wACC) {
+        WACC = wACC;
     }
 
     public static double getTerminalWACC() {
@@ -255,8 +272,8 @@ public class WACCDetailedObject {
         return SGAValue;
     }
 
-    public static void setSGAValue(double SGAValue) {
-        WACCDetailedObject.SGAValue = SGAValue;
+    public static void setSGAValue(double sGAValue) {
+        SGAValue = sGAValue;
     }
 
     public static double getInitialEBIT() {

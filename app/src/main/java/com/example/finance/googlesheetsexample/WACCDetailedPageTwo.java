@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class WACCDetailedPageTwo extends FirstScreenToShowMenu {
 
@@ -66,6 +68,7 @@ public class WACCDetailedPageTwo extends FirstScreenToShowMenu {
                 WACCDetailedObject.setDepreciationOption(SpinnerTwoText);
                 WACCDetailedObject.setWACCOption(SpinnerThreeText);
                 WACCDetailedObject.setTerminalGrowthRateOption(SpinnerFourText);
+                Log.v("Spinner",  WACCDetailedObject.getDepreciationOption());
 
 
 

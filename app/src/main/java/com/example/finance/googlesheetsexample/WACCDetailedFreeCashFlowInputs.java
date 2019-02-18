@@ -67,7 +67,7 @@ public class WACCDetailedFreeCashFlowInputs extends FirstScreenToShowMenu {
         super.onCreate(savedInstanceState);
 
 
-        getLayoutInflater().inflate(R.layout.waccdetailedpagemodelinputsone, frameLayout);
+        getLayoutInflater().inflate(R.layout.waccdetailedpagefreecashflowinputs, frameLayout);
 
 
         WACCDetailedFreeCashFlowInputsTitle = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsTitle);
@@ -148,7 +148,7 @@ public class WACCDetailedFreeCashFlowInputs extends FirstScreenToShowMenu {
         WACCDetailedFreeCashFlowInputsBaseYearRevenue = (TextView) this.findViewById
                 (R.id.WACCDetailedFreeCashFlowInputsBaseYearRevenue);
 
-        WACCDetailedFreeCashFlowInputsBaseYearRevenue.setText("Base your revenue ($ millions)");
+        WACCDetailedFreeCashFlowInputsBaseYearRevenue.setText("Base year revenue ($ millions)");
 
         WACCDetailedFreeCashFlowInputsBaseYearRevenue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,177 +278,131 @@ public class WACCDetailedFreeCashFlowInputs extends FirstScreenToShowMenu {
 
 
         //Cost of goods sold as % revenue
+        //only show if option "Input % CGS and % SGA"
+        //TODO make textviews be dynamically be added based off previous input
 
-        WACCDetailedFreeCashFlowInputsCostGoodsSold = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsCostGoodsSold);
+        TextView tvcostofgood = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsCostGoodsSold);
+        tvcostofgood.setVisibility(View.INVISIBLE);
+        TextView tvcostofgoodvalue = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsCostGoodsSoldValue);
+        tvcostofgoodvalue.setVisibility(View.INVISIBLE);
+        TextView tvFreeCashFlowInputsSGA = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsSGA);
+        tvFreeCashFlowInputsSGA.setVisibility(View.INVISIBLE);
+        TextView tvFreeCashFlowInputsSGAValue = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsSGAValue);
+        tvFreeCashFlowInputsSGAValue.setVisibility(View.INVISIBLE);
 
-        WACCDetailedFreeCashFlowInputsCostGoodsSold.setText("Cost of goods sold as % revenue");
+        if (WACCDetailedObject.getOperatingIncomeOption() == "Will input percent CGS and percent SGA") {
 
-        WACCDetailedFreeCashFlowInputsCostGoodsSold.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, PopUpWindow.class);
-
-                intent.putExtra("isExcelPopup", "false");
-                intent.putExtra("message", "Cost of goods sold (CGS) captures, in principle, " +
-                        "the direct costs of producing and selling the company's goods and services. " +
-                        "In most financial reporting, CGS-typically includes associated Depreciation " +
-                        " (make in italics) charges.");
-
-                startActivity(intent);
-
-
-            }
-
-        });
-
-        WACCDetailedFreeCashFlowInputsCostGoodsSold.setOnLongClickListener(new View.OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, pdf_viewer.class);
+            tvcostofgood = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsCostGoodsSold);
+            tvcostofgood.setVisibility(View.VISIBLE);
+            tvcostofgoodvalue = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsCostGoodsSoldValue);
+            tvcostofgoodvalue.setVisibility(View.VISIBLE);
+            tvFreeCashFlowInputsSGA = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsSGA);
+            tvFreeCashFlowInputsSGA.setVisibility(View.VISIBLE);
+            tvFreeCashFlowInputsSGAValue = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsSGAValue);
+            tvFreeCashFlowInputsSGAValue.setVisibility(View.VISIBLE);
 
 
-                startActivity(intent);
-                return false;
-            }
+
+            WACCDetailedFreeCashFlowInputsCostGoodsSold = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsCostGoodsSold);
+
+            WACCDetailedFreeCashFlowInputsCostGoodsSold.setText("Cost of goods sold as % revenue");
+
+            WACCDetailedFreeCashFlowInputsCostGoodsSold.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, PopUpWindow.class);
+
+                    intent.putExtra("isExcelPopup", "false");
+                    intent.putExtra("message", "Cost of goods sold (CGS) captures, in principle, " +
+                            "the direct costs of producing and selling the company's goods and services. " +
+                            "In most financial reporting, CGS-typically includes associated Depreciation " +
+                            " (make in italics) charges.");
+
+                    startActivity(intent);
 
 
-        });
+                }
 
-        WACCDetailedFreeCashFlowInputsCostGoodsSoldValue = (EditText) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsCostGoodsSoldValue);
-
-
-        WACCDetailedFreeCashFlowInputsCostGoodsSoldValue
-                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-                    public void onFocusChange(View v, boolean hasFocus) {
-                        if (!hasFocus) {
-                            //SAVE THE DATA
+            });
 
 
-                            WACCDetailedObject.setCostOfGoodsSoldAsPercentage(Double.parseDouble(
-                                    WACCDetailedFreeCashFlowInputsCostGoodsSoldValue.getText().toString()));
-                            Log.d("TEST", String.valueOf(WACCDetailedObject.getCostOfGoodsSoldAsPercentage()));
-                        }
+            WACCDetailedFreeCashFlowInputsCostGoodsSold.setOnLongClickListener(new View.OnLongClickListener() {
 
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, pdf_viewer.class);
+
+
+                    startActivity(intent);
+                    return false;
+                }
+
+
+            });
+
+            WACCDetailedFreeCashFlowInputsCostGoodsSoldValue = (EditText) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsCostGoodsSoldValue);
+
+
+            //SG&A as % revenue
+
+            WACCDetailedFreeCashFlowInputsSGA
+                    = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsSGA);
+
+            WACCDetailedFreeCashFlowInputsSGA.setText("SG&A (incl. R&D) as % revenue");
+            WACCDetailedFreeCashFlowInputsSGA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, PopUpWindow.class);
+
+                    intent.putExtra("isExcelPopup", "false");
+                    intent.putExtra("message", "SG&A - selling, general, and administrative " +
+                            "expenditures or SGA - captures, in principle, the indirect costs of producing " +
+                            "and selling the company's goods and services. (R&D expenses are assumed to " +
+                            "be included, so if it is reported separately in the company's financial " +
+                            "statements, R&D should be included here.) In most financial reporting, SGA " +
+                            "typically includes the associated Depreciation (make in italics) charges.");
+
+                    startActivity(intent);
+
+                }
+
+            });
+
+            WACCDetailedFreeCashFlowInputsSGA.setOnLongClickListener(new View.OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, pdf_viewer.class);
+
+
+                    startActivity(intent);
+                    return false;
+                }
+
+
+            });
+
+            WACCDetailedFreeCashFlowInputsSGAValue
+                    = (EditText) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsSGAValue);
+
+
+            //do error checking, implement Excel here
+
+            WACCDetailedFreeCashFlowInputsSGAValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        //SAVE THE DATA
+
+
+                        WACCDetailedObject.setSGAValue(Double.parseDouble(WACCDetailedFreeCashFlowInputsSGAValue.getText().toString()));
+                        //Log.d("TEST", WACCDetailedObject.);
                     }
-                });
-
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //leverage the Snackbar to make user aware of any errors in their data
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Data Submitted", null).show();
-
-
-                //Add all the model data here
-                WACCDetailedObject.
-                        setCompanyName(WACCDetailedFreeCashFlowInputsCompanyNameValue.getText().toString());
-
-
-                WACCDetailedObject.setBaseYear(Integer.parseInt(
-                        WACCDetailedFreeCashFlowInputsBaseYearValue.getText().toString()));
-
-                WACCDetailedObject.setNumberOfForecastPeriods(Integer.parseInt(
-                        WACCDetailedFreeCashFlowInputsNumberForecastPeriodsValue.getText().toString()));
-
-
-                WACCDetailedObject.setCurrentYearRevenue(Double.parseDouble(
-                        WACCDetailedFreeCashFlowInputsCurrentYearRevenueValue.getText().toString()));
-
-                FinanceModelSingleton.setData(Double.parseDouble(
-                        WACCDetailedFreeCashFlowInputsCurrentYearRevenueValue.getText().toString()));
-
-                WACCDetailedObject.setSGAValue(Double.parseDouble(
-                        WACCDetailedFreeCashFlowInputsSGAValue.getText().toString()));
-
-                WACCDetailedObject.setInitialEBIT(Double.parseDouble(
-                        WACCDetailedFreeCashFlowInputsInitialEBITValue.getText().toString()));
-
-                WACCDetailedObject.setLastYearEBIT(Double.parseDouble(
-                        WACCDetailedFreeCashFlowInputsLastPeriodEBITValue.getText().toString()));
-
-                WACCDetailedObject.setCapitalExpenditure(Double.parseDouble(
-                        WACCDetailedFreeCashFlowInputsCapitalExpenditureValue.getText().toString()));
-
-                WACCDetailedObject.setOperatingNWC(Double.parseDouble(
-                        WACCDetailedFreeCashFlowInputsOperatingNWCValue.getText().toString()));
-
-
-                if (WACCDetailedObject.getDepreciationOption() ==
-                        "Will use straight line rule") {
-
-                    WACCDetailedObject.setStraightLineDepreciationYears(Integer.valueOf(
-                            WACCDetailedFreeCashFlowInputsStraightLineYearsValue.getText().toString()));
 
                 }
+            });
 
-
-
-
-            }
-        });
-
-        //SG&A as % revenue
-
-        WACCDetailedFreeCashFlowInputsSGA
-                = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsSGA);
-
-        WACCDetailedFreeCashFlowInputsSGA.setText("SG&A (incl. R&D) as % revenue");
-        WACCDetailedFreeCashFlowInputsSGA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, PopUpWindow.class);
-
-                intent.putExtra("isExcelPopup", "false");
-                intent.putExtra("message", "SG&A - selling, general, and administrative " +
-                        "expenditures or SGA - captures, in principle, the indirect costs of producing " +
-                        "and selling the company's goods and services. (R&D expenses are assumed to " +
-                        "be included, so if it is reported separately in the company's financial " +
-                        "statements, R&D should be included here.) In most financial reporting, SGA " +
-                        "typically includes the associated Depreciation (make in italics) charges.");
-
-                startActivity(intent);
-
-            }
-
-        });
-
-        WACCDetailedFreeCashFlowInputsSGA.setOnLongClickListener(new View.OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, pdf_viewer.class);
-
-
-                startActivity(intent);
-                return false;
-            }
-
-
-        });
-
-        WACCDetailedFreeCashFlowInputsSGAValue
-                = (EditText) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsSGAValue);
-
-        //do error checking, implement Excel here
-
-        WACCDetailedFreeCashFlowInputsSGAValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    //SAVE THE DATA
-
-
-                    WACCDetailedObject.setSGAValue(Double.parseDouble(WACCDetailedFreeCashFlowInputsSGAValue.getText().toString()));
-                    //Log.d("TEST", WACCDetailedObject.);
-                }
-
-            }
-        });
+        }
 
         //Initial EBIT
 
@@ -689,52 +643,69 @@ public class WACCDetailedFreeCashFlowInputs extends FirstScreenToShowMenu {
         //Straight-line depreciation rule
         //Straight-line method; Depreciation Expense = Depreciable Amount/ Useful Life
 
-        WACCDetailedFreeCashFlowInputsStraightLineYears = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsStraightLineYears);
-
-        WACCDetailedFreeCashFlowInputsStraightLineYears.setText("Straight-line depreciation rule (#years)");
-
-        WACCDetailedFreeCashFlowInputsStraightLineYears.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, PopUpWindow.class);
-
-                intent.putExtra("isExcelPopup", "false");
-                intent.putExtra("message", "If you chose the option of 'straight line" +
-                        " depreciation rule' in the 'Key Questions' page, the model will calculate " +
-                        "Year T Depreciation (italics) as: \n\n Dt = Dt-1 + [Capext/N]  " +
-                        "\n\n where Capext is the Capital expenditure for Year T, and N is " +
-                        "assumed average depreciable life of assets. (If the number of forecast " +
-                        "periods exceeds N, the model fades Depreciation (italics) charges " +
-                        "to account for the fact that capital expenditure incurred in the early " +
-                        "periods will get fully depreciated, i.e., to account for the fact that " +
-                        "its book value fades to zero.)");
-
-                startActivity(intent);
-
-            }
-
-        });
-
-        WACCDetailedFreeCashFlowInputsStraightLineYearsValue
-                = (EditText) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsStraightLineValue);
-
-        WACCDetailedFreeCashFlowInputsStraightLineYearsValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    //SAVE THE DATA
+        TextView tvStraightLine = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsStraightLineYears);
+        tvStraightLine.setVisibility(View.INVISIBLE);
+        TextView tvStraightLineValue = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsStraightLineValue);
+        tvStraightLineValue.setVisibility(View.INVISIBLE);
 
 
-                    WACCDetailedObject
-                            .setStraightLineDepreciationYears(Integer.
-                                    valueOf(
-                                            WACCDetailedFreeCashFlowInputsStraightLineYearsValue
-                                                    .getText().toString()));
-                    //Log.d("TEST", WACCDetailedObject.);
+
+        if  (WACCDetailedObject.getDepreciationOption().equals("Will use straight line rule")) {
+
+
+            tvStraightLine = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsStraightLineYears);
+            tvStraightLine.setVisibility(View.VISIBLE);
+            tvStraightLineValue = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsStraightLineValue);
+            tvStraightLineValue.setVisibility(View.VISIBLE);
+
+
+            WACCDetailedFreeCashFlowInputsStraightLineYears = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsStraightLineYears);
+
+            WACCDetailedFreeCashFlowInputsStraightLineYears.setText("Straight-line depreciation rule (#years)");
+
+            WACCDetailedFreeCashFlowInputsStraightLineYears.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, PopUpWindow.class);
+
+                    intent.putExtra("isExcelPopup", "false");
+                    intent.putExtra("message", "If you chose the option of 'straight line" +
+                            " depreciation rule' in the 'Key Questions' page, the model will calculate " +
+                            "Year T Depreciation (italics) as: \n\n Dt = Dt-1 + [Capext/N]  " +
+                            "\n\n where Capext is the Capital expenditure for Year T, and N is " +
+                            "assumed average depreciable life of assets. (If the number of forecast " +
+                            "periods exceeds N, the model fades Depreciation (italics) charges " +
+                            "to account for the fact that capital expenditure incurred in the early " +
+                            "periods will get fully depreciated, i.e., to account for the fact that " +
+                            "its book value fades to zero.)");
+
+                    startActivity(intent);
+
                 }
 
-            }
-        });
+            });
+
+            WACCDetailedFreeCashFlowInputsStraightLineYearsValue
+                    = (EditText) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsStraightLineValue);
+
+            WACCDetailedFreeCashFlowInputsStraightLineYearsValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        //SAVE THE DATA
+
+
+                        WACCDetailedObject
+                                .setStraightLineDepreciationYears(Integer.
+                                        valueOf(
+                                                WACCDetailedFreeCashFlowInputsStraightLineYearsValue
+                                                        .getText().toString()));
+                        //Log.d("TEST", WACCDetailedObject.);
+                    }
+
+                }
+            });
+        }
 
         //Tax rate
 
@@ -784,61 +755,159 @@ public class WACCDetailedFreeCashFlowInputs extends FirstScreenToShowMenu {
             }
         });
 
-        //Base year depreciation
+        //Base year depreciation, only have this on if Straight Line is not selected
+        TextView tvBaseYearDepreciation = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
+        tvBaseYearDepreciation.setVisibility(View.INVISIBLE);
+        TextView tvBaseYearDepreciationValue = (TextView)findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
+        tvBaseYearDepreciationValue.setVisibility(View.INVISIBLE);
 
-        WACCDetailedFreeCashFlowInputsBaseYearDepreciation = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
+        if (WACCDetailedObject.getDepreciationOption() != "Will use straight line rule") {
 
-        WACCDetailedFreeCashFlowInputsBaseYearDepreciation.setText("Base year depreciation ($ millions)");
+            tvBaseYearDepreciation = (TextView) findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
+            tvBaseYearDepreciation.setVisibility(View.VISIBLE);
+            tvBaseYearDepreciationValue = (TextView) findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue);
+            tvBaseYearDepreciationValue.setVisibility(View.VISIBLE);
 
-        WACCDetailedFreeCashFlowInputsBaseYearDepreciation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, PopUpWindow.class);
+            WACCDetailedFreeCashFlowInputsBaseYearDepreciation = (TextView) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciation);
 
-                intent.putExtra("isExcelPopup", "false");
+            WACCDetailedFreeCashFlowInputsBaseYearDepreciation.setText("Base year depreciation ($ millions)");
 
-                intent.putExtra("message", "The base year value for this can " +
-                        "be found in the Cash Flow Statement.");
+            WACCDetailedFreeCashFlowInputsBaseYearDepreciation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, PopUpWindow.class);
 
-                startActivity(intent);
-            }
+                    intent.putExtra("isExcelPopup", "false");
 
-        });
+                    intent.putExtra("message", "The base year value for this can " +
+                            "be found in the Cash Flow Statement.");
 
-        WACCDetailedFreeCashFlowInputsBaseYearDepreciation.setOnLongClickListener(new View.OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, pdf_viewer.class);
-
-
-                startActivity(intent);
-                return false;
-            }
-
-
-        });
-
-        WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue
-                = (EditText) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue);
-
-        WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    //SAVE THE DATA
-
-
-                    WACCDetailedObject
-                            .setBaseYearDepreciation(Double.
-                                    valueOf(
-                                            WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue
-                                                    .getText().toString()));
-                    //Log.d("TEST", WACCDetailedObject.);
+                    startActivity(intent);
                 }
 
+            });
+
+            WACCDetailedFreeCashFlowInputsBaseYearDepreciation.setOnLongClickListener(new View.OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+                    Intent intent = new Intent(WACCDetailedFreeCashFlowInputs.this, pdf_viewer.class);
+
+
+                    startActivity(intent);
+                    return false;
+                }
+
+
+            });
+
+            WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue
+                    = (EditText) this.findViewById(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue);
+
+            WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus) {
+                        //SAVE THE DATA
+
+
+                        WACCDetailedObject
+                                .setBaseYearDepreciation(Double.
+                                        valueOf(
+                                                WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue
+                                                        .getText().toString()));
+                        //Log.d("TEST", WACCDetailedObject.);
+                    }
+
+                }
+            });
+        }
+
+
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //leverage the Snackbar to make user aware of any errors in their data
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Data Submitted", null).show();
+
+
+                //Add all the model data here
+                WACCDetailedObject.
+                        setCompanyName(WACCDetailedFreeCashFlowInputsCompanyNameValue.getText().toString());
+
+
+                WACCDetailedObject.setBaseYear(Integer.parseInt(
+                        WACCDetailedFreeCashFlowInputsBaseYearValue.getText().toString()));
+
+                WACCDetailedObject.setNumberOfForecastPeriods(Integer.parseInt(
+                        WACCDetailedFreeCashFlowInputsNumberForecastPeriodsValue.getText().toString()));
+
+                Double num = Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsCurrentYearRevenueValue.getText().toString());
+                WACCDetailedObject.setCurrentYearRevenue(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsCurrentYearRevenueValue.getText().toString()));
+
+                String string = Double.toString(WACCDetailedObject.getCurrentYearRevenue());
+
+                Log.v("CurrentYearRevenue", String.valueOf(WACCDetailedObject.getCurrentYearRevenue()));
+
+                WACCDetailedObject.setAnnualRevenueGrowthPercentage(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsAnnualRevenueGrowthRateValue.getText().toString()));
+
+                if (WACCDetailedObject.getOperatingIncomeOption() == "Will input percent CGS and percent SGA") {
+
+
+                    WACCDetailedObject.setCostOfGoodsSoldAsPercentage(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsCostGoodsSoldValue.getText().toString()));
+
+                    WACCDetailedObject.setSGAValue(Double.parseDouble(
+                            WACCDetailedFreeCashFlowInputsSGAValue.getText().toString()));
+                }
+
+
+
+
+                WACCDetailedObject.setInitialEBIT(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsInitialEBITValue.getText().toString()));
+
+                WACCDetailedObject.setLastYearEBIT(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsLastPeriodEBITValue.getText().toString()));
+
+                WACCDetailedObject.setCapitalExpenditure(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsCapitalExpenditureValue.getText().toString()));
+
+                WACCDetailedObject.setOperatingNWC(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsOperatingNWCValue.getText().toString()));
+
+
+                if (WACCDetailedObject.getDepreciationOption() ==
+                        "Will use straight line rule") {
+
+                    WACCDetailedObject.setStraightLineDepreciationYears(Integer.valueOf(
+                            WACCDetailedFreeCashFlowInputsStraightLineYearsValue.getText().toString()));
+
+                } else {
+
+                    WACCDetailedObject.setBaseYearDepreciation(Double.parseDouble(
+                            WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue.getText().toString()));
+
+                }
+
+                WACCDetailedObject.setOperatingNWC(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsOperatingNWCValue.getText().toString()));
+
+                WACCDetailedObject.setTaxRate(Double.parseDouble(
+                        WACCDetailedFreeCashFlowInputsOperatingNWCValue.getText().toString()));
+
+
+
             }
         });
+
+
 
 
     }
