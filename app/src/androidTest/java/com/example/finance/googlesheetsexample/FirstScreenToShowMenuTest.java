@@ -1,7 +1,11 @@
 package com.example.finance.googlesheetsexample;
 
 
+import android.os.SystemClock;
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -53,8 +57,10 @@ public class FirstScreenToShowMenuTest {
         ViewInteraction WACCDetailedTest  = onView(withText("WACCDetailed"));
         WACCDetailedTest.perform(click());
 
-        ViewInteraction appCompatEditText0  = onView(withText("WACCDetailed"));
-        appCompatEditText0.perform(click());
+        WACCDetailedTest  = onView(withText("WACCDetailedPageTwo"));
+        WACCDetailedTest.perform(click());
+
+
 
 
 
@@ -78,6 +84,17 @@ public class FirstScreenToShowMenuTest {
                                 1),
                         isDisplayed()));
         appCompatImageButton2.perform(click());
+
+        WACCDetailedTest  = onView(withText("WACCDetailed"));
+        WACCDetailedTest.perform(click());
+
+        WACCDetailedTest  = onView(withText("WACCDetailedFreeCashFlowInputs"));
+        WACCDetailedTest.perform(click());
+
+        pressBack();
+
+        //progress dialog is now shown
+        //SystemClock.sleep(5000);
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsCompanyNameInput),
@@ -164,37 +181,23 @@ public class FirstScreenToShowMenuTest {
                         isDisplayed()));
         appCompatEditText9.perform(closeSoftKeyboard());
 
-        pressBack();
 
-        ViewInteraction appCompatEditText10 = onView(
-                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsInitialEBITValue), withText("0.00"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                24)));
-        appCompatEditText10.perform(scrollTo(), replaceText(".00"));
 
-        ViewInteraction appCompatEditText11 = onView(
-                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsInitialEBITValue), withText(".00"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                24),
-                        isDisplayed()));
-        appCompatEditText11.perform(closeSoftKeyboard());
 
-        pressBack();
+        //progress dialog is now shown
+        //SystemClock.sleep(5000);
 
-        ViewInteraction appCompatEditText12 = onView(
-                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsInitialEBITValue), withText(".00"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                24)));
-        appCompatEditText12.perform(scrollTo(), replaceText("3.00"));
+        Espresso.onView(ViewMatchers.withId(R.id.scrollviewfreecashflow)).perform(ViewActions.swipeUp());
+        Espresso.onView(ViewMatchers.withId(R.id.scrollviewfreecashflow)).perform(ViewActions.swipeUp());
+        //SystemClock.sleep(5000);
+
+        SystemClock.sleep(5000);
+
+
+        ViewInteraction appCompatEditText12 = onView(allOf(withText("0.00"),withId(R.id.WACCDetailedFreeCashFlowInputsInitialEBITValue)));
+        appCompatEditText12.perform(closeSoftKeyboard());
+        appCompatEditText12.perform(replaceText("3.00"));
+
 
         ViewInteraction appCompatEditText13 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsInitialEBITValue), withText("3.00"),
@@ -368,6 +371,12 @@ public class FirstScreenToShowMenuTest {
                                 1),
                         isDisplayed()));
         appCompatImageButton3.perform(click());
+
+        WACCDetailedTest  = onView(withText("WACCDetailed"));
+        WACCDetailedTest.perform(click());
+
+        WACCDetailedTest  = onView(withText("WACCDetailedPageResults"));
+        WACCDetailedTest.perform(click());
     }
 
     private static Matcher<View> childAtPosition(
