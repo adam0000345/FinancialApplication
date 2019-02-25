@@ -38,6 +38,14 @@ import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
 public class FirstScreenToShowMenuTest {
 
+    //INPUT USED
+    //first page default, 1990, 4, 100, revenuegrowth 4, initialperiod 5.00, lastperiodebit, 0.00
+    //capex 3%, depreciation rule 3, tax rate: 3%, base year depreciation $1.00 million
+    //
+
+
+
+
     @Rule
     public ActivityTestRule<FirstScreenToShowMenu> mActivityTestRule = new ActivityTestRule<>(FirstScreenToShowMenu.class);
 
@@ -94,7 +102,7 @@ public class FirstScreenToShowMenuTest {
         pressBack();
 
         //progress dialog is now shown
-        //SystemClock.sleep(5000);
+        SystemClock.sleep(5000);
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsCompanyNameInput),
@@ -191,16 +199,16 @@ public class FirstScreenToShowMenuTest {
         Espresso.onView(ViewMatchers.withId(R.id.scrollviewfreecashflow)).perform(ViewActions.swipeUp());
         //SystemClock.sleep(5000);
 
-        SystemClock.sleep(5000);
+        //SystemClock.sleep(5000);
 
 
         ViewInteraction appCompatEditText12 = onView(allOf(withText("0.00"),withId(R.id.WACCDetailedFreeCashFlowInputsInitialEBITValue)));
         appCompatEditText12.perform(closeSoftKeyboard());
-        appCompatEditText12.perform(replaceText("3.00"));
+        appCompatEditText12.perform(replaceText("5.00"));
 
 
         ViewInteraction appCompatEditText13 = onView(
-                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsInitialEBITValue), withText("3.00"),
+                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsInitialEBITValue), withText("5.00"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
@@ -209,16 +217,7 @@ public class FirstScreenToShowMenuTest {
                         isDisplayed()));
         appCompatEditText13.perform(closeSoftKeyboard());
 
-        pressBack();
-
-        ViewInteraction appCompatTextView = onView(
-                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsOperatingNWC), withText("Operating NWC (Non-cash working capital) as % revenue"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                19)));
-        appCompatTextView.perform(scrollTo(), click());
+        //SystemClock.sleep(5000);
 
         ViewInteraction appCompatEditText14 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsStraightLineValue), withText("0"),
@@ -239,9 +238,8 @@ public class FirstScreenToShowMenuTest {
                         isDisplayed()));
         appCompatEditText15.perform(closeSoftKeyboard());
 
-        pressBack();
+        //SystemClock.sleep(5000);
 
-        pressBack();
 
         ViewInteraction appCompatEditText16 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsStraightLineValue),
@@ -252,7 +250,9 @@ public class FirstScreenToShowMenuTest {
                                 28)));
         appCompatEditText16.perform(scrollTo(), replaceText("3"), closeSoftKeyboard());
 
-        pressBack();
+
+
+        //SystemClock.sleep(5000);
 
         ViewInteraction appCompatEditText17 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsTaxRateValue), withText("0.00"),
@@ -261,10 +261,10 @@ public class FirstScreenToShowMenuTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 29)));
-        appCompatEditText17.perform(scrollTo(), replaceText("5.00"));
+        appCompatEditText17.perform(scrollTo(), replaceText("3.00"));
 
         ViewInteraction appCompatEditText18 = onView(
-                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsTaxRateValue), withText("5.00"),
+                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsTaxRateValue), withText("3.00"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
@@ -273,19 +273,6 @@ public class FirstScreenToShowMenuTest {
                         isDisplayed()));
         appCompatEditText18.perform(closeSoftKeyboard());
 
-        pressBack();
-
-        pressBack();
-
-        ViewInteraction appCompatTextView2 = onView(
-                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsTaxRate), withText("Tax rate (T; %)"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                21)));
-        appCompatTextView2.perform(scrollTo(), click());
-
         ViewInteraction appCompatEditText19 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsCapitalExpenditureValue), withText("0.00"),
                         childAtPosition(
@@ -293,10 +280,10 @@ public class FirstScreenToShowMenuTest {
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
                                 26)));
-        appCompatEditText19.perform(scrollTo(), replaceText("5.00"));
+        appCompatEditText19.perform(scrollTo(), replaceText("3.00"));
 
         ViewInteraction appCompatEditText20 = onView(
-                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsCapitalExpenditureValue), withText("5.00"),
+                allOf(withId(R.id.WACCDetailedFreeCashFlowInputsCapitalExpenditureValue), withText("3.00"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
@@ -305,7 +292,7 @@ public class FirstScreenToShowMenuTest {
                         isDisplayed()));
         appCompatEditText20.perform(closeSoftKeyboard());
 
-        pressBack();
+
 
         ViewInteraction appCompatEditText21 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue), withText("0.00"),
@@ -315,6 +302,8 @@ public class FirstScreenToShowMenuTest {
                                         0),
                                 30)));
         appCompatEditText21.perform(scrollTo(), replaceText("1.00"));
+
+
 
         ViewInteraction appCompatEditText22 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue), withText("1.00"),
@@ -326,9 +315,7 @@ public class FirstScreenToShowMenuTest {
                         isDisplayed()));
         appCompatEditText22.perform(closeSoftKeyboard());
 
-        pressBack();
 
-        pressBack();
 
         ViewInteraction appCompatEditText23 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue), withText("1.00"),
@@ -338,6 +325,8 @@ public class FirstScreenToShowMenuTest {
                                         0),
                                 30)));
         appCompatEditText23.perform(scrollTo(), replaceText("10.00"));
+
+        SystemClock.sleep(5000);
 
         ViewInteraction appCompatEditText24 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue), withText("10.00"),
@@ -349,7 +338,7 @@ public class FirstScreenToShowMenuTest {
                         isDisplayed()));
         appCompatEditText24.perform(closeSoftKeyboard());
 
-        pressBack();
+
 
         ViewInteraction floatingActionButton2 = onView(
                 allOf(withId(R.id.fab),
@@ -360,6 +349,8 @@ public class FirstScreenToShowMenuTest {
                                 0),
                         isDisplayed()));
         floatingActionButton2.perform(click());
+
+
 
         ViewInteraction appCompatImageButton3 = onView(
                 allOf(withContentDescription("Navigate up"),
@@ -377,7 +368,10 @@ public class FirstScreenToShowMenuTest {
 
         WACCDetailedTest  = onView(withText("WACCDetailedPageResults"));
         WACCDetailedTest.perform(click());
+
+        SystemClock.sleep(15000);
     }
+
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {

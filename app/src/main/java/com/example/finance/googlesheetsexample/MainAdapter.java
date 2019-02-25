@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,7 +97,8 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         viewHolder.WACCDetailedPageResultsSGACostNumber.setText(mDataset.get(i).get("WACCDetailedResultsSGANumber"));
         viewHolder.WACCDetailedResultsEBITNumber.setText(mDataset.get(i).get("WACCDetailedResultsEBITNumber"));
         viewHolder.WACCDetailedResultsDepreciationNumber.setText(mDataset.get(i).get("WACCDetailedResultsDepreciationNumber"));
-        viewHolder.WACCDetailedResultsOperatingCashFlowNumber.setText(mDataset.get(i).get("WACCDetailedResultsOperatingCashFlowNumber"));
+        viewHolder.WACCDetailedResultsOperatingCashFlowNumber.setText(toString().
+                format("%.2f", Double.parseDouble(mDataset.get(i).get("WACCDetailedResultsOperatingCashFlowNumber"))));
         viewHolder.WACCDetailedResultsCashExpenditureNumber.setText(mDataset.get(i).get("WACCDetailedResultsCashExpenditureNumber"));
         viewHolder.WACCDetailedResultsChangeInNetWorkingCapitalNumber.setText(mDataset.get(i).get("WACCDetailedResultsChangeInNetWorkingCapitalNumber"));
         viewHolder.WACCDetailedResultsFreeCashFlowNumber.setText(mDataset.get(i).get("WACCDetailedResultsFreeCashFlowNumber"));

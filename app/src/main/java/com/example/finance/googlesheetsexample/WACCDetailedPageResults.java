@@ -135,7 +135,14 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
             //Working Capital - (Principal Repaid - New Debt Issues) - Preferred Dividend
             //-new Debt Issues = Free Cash Flow to Equity
 
-            CurrentYearRevenue = WACCDetailedObject.getCurrentYearRevenue();
+            if (currentyear == 0) {
+
+                CurrentYearRevenue = WACCDetailedObject.getCurrentYearRevenue();
+            } else {
+                CurrentYearRevenue = ((Double.parseDouble(data.get(currentyear-1)
+                        .get("WACCDetailedResultsRevenueNumber")))
+                        * WACCDetailedObject.getAnnualRevenueGrowthPercentage());
+            }
 
             CapitalExpenditurePercentageOfRevenue =
                     WACCDetailedObject.getCapitalExpenditure();
@@ -287,14 +294,9 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                     == "Will use straight line rule") {
 
                 //use above
-                //Operating Income Calculation
-                InitialEBITPercentageOfRevenue =
-                        WACCDetailedObject.getInitialEBIT();
 
-                //EBIT (Operating Income)
 
-                data.get(currentyear).put("WACCDetailedResultsEBITNumber",
-                        String.valueOf(CurrentYearRevenue * InitialEBITPercentageOfRevenue));
+
 
                 StraightLineDepreciationNumberOfYears
                         = WACCDetailedObject
@@ -314,6 +316,31 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                     data.get(currentyear).put("WACCDetailedResultsDepreciationNumber",
                             String.valueOf(BaseYearDepreciation));
                 } else{
+
+                    //Operating Income Calculation
+                    InitialEBITPercentageOfRevenue =
+                            WACCDetailedObject.getInitialEBIT();
+
+                    //EBIT (Operating Income),
+                    // Expected growth rate = Reinvestment Rate * ROIC
+
+                    // pre-tax measure of operating profitability:
+                    // Pre-tax Operating Margin = EBIT / Sales (Revenue)
+
+                    //EBIT in period t = Revenues in period t * Expected operating margin in period t
+
+                    //EBIT in period0 = 100mill * 5%, = 5 million
+
+                    //Expected growth rate in operating income = Return on Capital * Reinvestment Rate + Efficiency growth
+                    // (as a result of changing return on capital)
+
+                    //INITIAL EBIT PERCENTAGE OF REVENUE IS OPERATING MARGIN FOR YEAR 1 of the valuation
+
+                    //double OperatingMargin =
+
+                    data.get(currentyear).put("WACCDetailedResultsEBITNumber",
+                            String.valueOf(CurrentYearRevenue * InitialEBITPercentageOfRevenue));
+
                     double CurrentYearDepreciation = Double.valueOf(data.get(currentyear-1)
                             .get("WACCDetailedResultsDepreciationNumber")) +
                             (
@@ -427,8 +454,9 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                     && WACCDetailedObject.getDepreciationOption()
                     == "Will use straight line rule") {
 
-                FreeCashFlow = InitialEBITPercentageOfRevenue * (1 - TaxRate)
-                        - (CapitalExpenditurePercentageOfRevenue -
+                FreeCashFlow = (InitialEBITPercentageOfRevenue * CurrentYearRevenue)
+                        * (1 - TaxRate)
+                        - ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) -
                         BaseYearDepreciation / StraightLineDepreciationNumberOfYears
                 ) - ChangeInNonCashWorkingCapital;
             }
@@ -456,10 +484,10 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
 
 
-            //Operating Cash Flow, this is Free Cash Flow (FCFF) - cash or capital expenditure
+            //Operating Cash Flow, this is Free Cash Flow (FCFF) + cash or capital expenditure
 
             data.get(currentyear).put("WACCDetailedResultsOperatingCashFlowNumber",
-                    String.valueOf(FreeCashFlow -
+                    String.valueOf(FreeCashFlow +
                             (CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue)));
 
             //WACC Calculation
