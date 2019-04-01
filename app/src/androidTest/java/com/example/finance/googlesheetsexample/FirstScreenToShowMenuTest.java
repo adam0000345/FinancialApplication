@@ -2,13 +2,11 @@ package com.example.finance.googlesheetsexample;
 
 
 import android.os.SystemClock;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.action.ViewActions;
-import android.support.test.espresso.matcher.ViewMatchers;
-import android.support.test.filters.LargeTest;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+
+
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -20,17 +18,26 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
+import androidx.test.espresso.Espresso;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
@@ -40,7 +47,7 @@ public class FirstScreenToShowMenuTest {
 
     //INPUT USED
     //first page default, 1990, 4, 100, revenuegrowth 4, initialperiod 5.00, lastperiodebit, 0.00
-    //capex 3%, depreciation rule 3, tax rate: 3%, base year depreciation $1.00 million
+    //capex 3%, operating NWC 0% , depreciation rule 3 years, tax rate: 3%, base year depreciation $10.00 million
     //
 
 
@@ -76,11 +83,13 @@ public class FirstScreenToShowMenuTest {
                 allOf(withId(R.id.fab),
                         childAtPosition(
                                 childAtPosition(
-                                        withClassName(is("android.support.design.widget.CoordinatorLayout")),
+                                        withClassName(is("androidx.coordinatorlayout.widget.CoordinatorLayout")),
                                         1),
                                 0),
                         isDisplayed()));
         floatingActionButton.perform(click());
+
+
 
         ViewInteraction appCompatImageButton2 = onView(
                 allOf(withContentDescription("Navigate up"),
@@ -102,7 +111,7 @@ public class FirstScreenToShowMenuTest {
         pressBack();
 
         //progress dialog is now shown
-        SystemClock.sleep(5000);
+        //SystemClock.sleep(5000);
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsCompanyNameInput),
@@ -219,6 +228,8 @@ public class FirstScreenToShowMenuTest {
 
         //SystemClock.sleep(5000);
 
+
+
         ViewInteraction appCompatEditText14 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsStraightLineValue), withText("0"),
                         childAtPosition(
@@ -326,7 +337,7 @@ public class FirstScreenToShowMenuTest {
                                 30)));
         appCompatEditText23.perform(scrollTo(), replaceText("10.00"));
 
-        SystemClock.sleep(5000);
+        //SystemClock.sleep(5000);
 
         ViewInteraction appCompatEditText24 = onView(
                 allOf(withId(R.id.WACCDetailedFreeCashFlowInputsBaseYearDepreciationValue), withText("10.00"),
@@ -368,6 +379,17 @@ public class FirstScreenToShowMenuTest {
 
         WACCDetailedTest  = onView(withText("WACCDetailedPageResults"));
         WACCDetailedTest.perform(click());
+
+        SystemClock.sleep(5000);
+
+        // First, scroll to the view holder using the isInTheMiddle() matcher.
+        onView(withId(R.id.recyclerview)).perform(RecyclerViewActions.scrollToPosition(1));
+
+        SystemClock.sleep(5000);
+
+        // First, scroll to the view holder using the isInTheMiddle() matcher.
+        onView(withId(R.id.recyclerview)).perform(RecyclerViewActions.scrollToPosition(2));
+
 
         SystemClock.sleep(15000);
     }

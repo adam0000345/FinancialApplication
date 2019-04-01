@@ -2,9 +2,10 @@ package com.example.finance.googlesheetsexample;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class WACCDetailedPageTwo extends FirstScreenToShowMenu {
 

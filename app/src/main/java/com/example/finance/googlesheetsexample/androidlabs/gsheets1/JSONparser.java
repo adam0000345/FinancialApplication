@@ -1,14 +1,12 @@
 package com.example.finance.googlesheetsexample.androidlabs.gsheets1;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.example.finance.googlesheetsexample.util.Keys;
-import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import org.json.JSONException;

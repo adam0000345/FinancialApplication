@@ -1,13 +1,16 @@
 package com.example.finance.googlesheetsexample;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
 import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
@@ -36,7 +39,7 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.Adapter mAdapter;
+    private MainAdapter mAdapter;
     private Map<Integer, HashMap<String, String>> data;
 
 
@@ -109,6 +112,8 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
 
 
+
+
         for (int currentyear = 0; currentyear < WACCDetailedObject.getNumberOfForecastPeriods();
              currentyear++) {
 
@@ -138,10 +143,25 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
             if (currentyear == 0) {
 
                 CurrentYearRevenue = WACCDetailedObject.getCurrentYearRevenue();
+                //if we are just starting forecast, just use CurrentYearRevenue value
+                //Revenue
+
+                data.get(currentyear).
+                        put("WACCDetailedResultsRevenueNumber", String.valueOf(CurrentYearRevenue));
             } else {
                 CurrentYearRevenue = ((Double.parseDouble(data.get(currentyear-1)
                         .get("WACCDetailedResultsRevenueNumber")))
-                        * WACCDetailedObject.getAnnualRevenueGrowthPercentage());
+                        * (WACCDetailedObject.getAnnualRevenueGrowthPercentage() * .01) +
+                        (Double.parseDouble(data.get(currentyear-1)
+                                .get("WACCDetailedResultsRevenueNumber"))));
+
+                WACCDetailedObject.setCurrentYearRevenue(CurrentYearRevenue);
+
+
+
+                data.get(currentyear).
+                        put("WACCDetailedResultsRevenueNumber",
+                                String.valueOf(CurrentYearRevenue));
             }
 
             CapitalExpenditurePercentageOfRevenue =
@@ -161,9 +181,11 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
             //If CGS and SGA are inputted use to calculate EBIT, yearly SGA (R&D), and COGS,
             // otherwise, just use
             //the Ebit provided
-            if (WACCDetailedObject.getOperatingIncomeOption() ==
-                    "Will input percent CGS and percent SGA");
+            if (WACCDetailedObject.getOperatingIncomeOption().
+                    equals("Will input percent CGS and percent SGA"))
             {
+                Log.i("Operating Income Option", WACCDetailedObject.getOperatingIncomeOption());
+
 
                 //Operating Profit Margin = Operating Income / Sales Revenue
                 //EBIT in period t = Revenues in period t * Expected operating margin in period t
@@ -288,6 +310,8 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
             }
 
+
+            //FOCUS HERE FOR NOW
             else if (WACCDetailedObject.getOperatingIncomeOption()
                     == "Will input percent EBIT (Operating Margin)"
                     && WACCDetailedObject.getDepreciationOption()
@@ -336,10 +360,46 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
                     //INITIAL EBIT PERCENTAGE OF REVENUE IS OPERATING MARGIN FOR YEAR 1 of the valuation
 
-                    //double OperatingMargin =
+                    //take the initial ebit and subtract it by the last period ebit, e.g. 25 percent - 20 percent
+                    //it will get you 5 percent, take that amount and divide it by the amount of forecasted years
+                    //subtract every year's ebit by .005 (.05/10 years) and every year multiply that ebit by that
+                    //year's revenue, so year 0 will be nothing, year 1 will be 24.5%, year 2 will be 24% and so on
 
-                    data.get(currentyear).put("WACCDetailedResultsEBITNumber",
-                            String.valueOf(CurrentYearRevenue * InitialEBITPercentageOfRevenue));
+                    //calculate the ebit difference here
+                    double EBITDifference = WACCDetailedObject.getInitialEBIT() - WACCDetailedObject.getLastYearEBIT();
+
+                    //numbers from .20 to .25, will be -.05
+
+                    //calculate the ebit multiple here
+                    double EBITAmount = (EBITDifference/WACCDetailedObject.getNumberOfForecastPeriods()) * currentyear;
+
+                    //if initial ebit is greater than lastyear ebit, subtract
+                    if (WACCDetailedObject.getInitialEBIT() > WACCDetailedObject.getLastYearEBIT()) {
+
+                        double EBITMultiple = WACCDetailedObject.getInitialEBIT() - EBITAmount;
+
+                        double EBITForTheYear = WACCDetailedObject.getCurrentYearRevenue() *
+                                EBITMultiple;
+
+                        data.get(currentyear).put("WACCDetailedResultsEBITNumber",
+                                String.format("%.2f", EBITForTheYear));
+
+
+
+
+                        //if initial ebit is less than last year ebit, add
+                    }else{
+
+                        double EBITMultiple = WACCDetailedObject.getInitialEBIT() + EBITAmount;
+
+                        double EBITForTheYear = WACCDetailedObject.getCurrentYearRevenue() *
+                                EBITMultiple;
+
+                        data.get(currentyear).put("WACCDetailedResultsEBITNumber",
+                                String.format("%.2f", EBITForTheYear));
+
+                    }
+
 
                     double CurrentYearDepreciation = Double.valueOf(data.get(currentyear-1)
                             .get("WACCDetailedResultsDepreciationNumber")) +
@@ -352,67 +412,10 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                 }
 
 
-
-
-
                 FreeCashFlow = InitialEBITPercentageOfRevenue * (1 - TaxRate)
                         - ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) -
                         BaseYearDepreciation / StraightLineDepreciationNumberOfYears
                 ) - ChangeInNonCashWorkingCapital;
-
-
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-            //handle Net Working Capital calculation here
-            if (currentyear == 0) {
-                YearEarlierWorkingCapital = 0;
-                CurrentYearWorkingCapital =
-                        WACCDetailedObject.getOperatingNWC();
-
-                //if we are just starting forecast, just use CurrentYearRevenue value
-                //Revenue
-
-                data.get(currentyear).
-                        put("WACCDetailedResultsRevenueNumber", String.valueOf(CurrentYearRevenue));
-
-
-
-
-
-
-            } else {
-                YearEarlierWorkingCapital = CurrentYearWorkingCapital;
-                CurrentYearWorkingCapital =
-                        WACCDetailedObject.getOperatingNWC();
-
-                //if we are in year 1 or above, apply a revenue growth percentage here
-                //Revenue = Revenue + (Revenue Growth Rate * Revenue)
-
-                CurrentYearRevenue = CurrentYearRevenue + (
-                        CurrentYearRevenue *
-                                WACCDetailedObject.
-                                        getAnnualRevenueGrowthPercentage());
-
-                WACCDetailedObject.setCurrentYearRevenue(CurrentYearRevenue);
-
-
-
-                data.get(currentyear).
-                        put("WACCDetailedResultsRevenueNumber",
-                                String.valueOf(CurrentYearRevenue));
-
-
 
 
             }
