@@ -201,6 +201,16 @@ public class FirstScreenToShowMenu extends AppCompatActivity{
 
         }
 
+        //Blockly Options
+
+        switch (MenuName) {
+            case "Blockly Setup":
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+                break;
+
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
@@ -310,6 +320,13 @@ public class FirstScreenToShowMenu extends AppCompatActivity{
         }
 
         menuModel = new MenuModel("Not Sure", true, false);
+        headerList.add(menuModel);
+
+        if (!menuModel.hasChildren) {
+            childList.put(menuModel, null);
+        }
+
+        menuModel = new MenuModel("Blockly Setup", true, false);
         headerList.add(menuModel);
 
         if (!menuModel.hasChildren) {

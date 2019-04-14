@@ -78,7 +78,7 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
         data = new HashMap<Integer, HashMap<String,String>>();
 
         //USED FOR TESTING PURPOSES ONLY!!
-        WACCDetailedObject.setNumberOfForecastPeriods(6);
+        WACCDetailedObject.setNumberOfForecastPeriods(4);
 
         for (int i = 0; i < WACCDetailedObject.getNumberOfForecastPeriods(); i++) {
 
@@ -169,7 +169,7 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
             //Calculate Cash Expenditure
             data.get(currentyear).put("WACCDetailedResultsCashExpenditureNumber",
-                    String.valueOf(CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue));
+                    String.format("%.2f", CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue * .01));
 
             //Working capital, also known as net working capital, is the difference between a company’s current assets,
             // like cash, accounts receivable (customers’ unpaid bills) and inventories of raw materials and finished
@@ -319,6 +319,11 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
                 //use above
 
+                //given multiple year input, different forecasted revenue numbers, different operating NWC calculated
+                //as a result, different changes in non-cash working capital is calculated
+                ChangeInNonCashWorkingCapital =
+                        CurrentYearWorkingCapital - YearEarlierWorkingCapital;
+
 
 
 
@@ -333,7 +338,14 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                 //Depreciation
 
                 //Year T Depreciation as:
-                //DT = DT-1 + [CapexT/N]
+                //DT = DT-1(last year Depreciation) + [CapexT/N] where CapexT is the
+                //Capital expenditure for Year T, and N is the assume average depreciable
+                //life of assets (e.g. 3), if the number of forecast periods exceeds N, the model
+                //fades Depreciation charges to account for the fact that capital
+                //expenditure incurred in early periods and will get fully depreciated,
+                //account for the fact that its book value fades to zero
+
+
 
                 if (currentyear == 0) {
                     double CurrentYearDepreciation = BaseYearDepreciation;
@@ -366,17 +378,17 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                     //year's revenue, so year 0 will be nothing, year 1 will be 24.5%, year 2 will be 24% and so on
 
                     //calculate the ebit difference here
-                    double EBITDifference = WACCDetailedObject.getInitialEBIT() - WACCDetailedObject.getLastYearEBIT();
+                    double EBITDifference = .01 * (WACCDetailedObject.getInitialEBIT() - WACCDetailedObject.getLastYearEBIT());
 
                     //numbers from .20 to .25, will be -.05
 
                     //calculate the ebit multiple here
                     double EBITAmount = (EBITDifference/WACCDetailedObject.getNumberOfForecastPeriods()) * currentyear;
 
-                    //if initial ebit is greater than lastyear ebit, subtract
+                    //if initial ebit is greater than last year ebit, subtract
                     if (WACCDetailedObject.getInitialEBIT() > WACCDetailedObject.getLastYearEBIT()) {
 
-                        double EBITMultiple = WACCDetailedObject.getInitialEBIT() - EBITAmount;
+                        double EBITMultiple = (.01 * WACCDetailedObject.getInitialEBIT()) - EBITAmount;
 
                         double EBITForTheYear = WACCDetailedObject.getCurrentYearRevenue() *
                                 EBITMultiple;
@@ -390,7 +402,7 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                         //if initial ebit is less than last year ebit, add
                     }else{
 
-                        double EBITMultiple = WACCDetailedObject.getInitialEBIT() + EBITAmount;
+                        double EBITMultiple = (.01 * WACCDetailedObject.getInitialEBIT()) + EBITAmount;
 
                         double EBITForTheYear = WACCDetailedObject.getCurrentYearRevenue() *
                                 EBITMultiple;
@@ -398,34 +410,76 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                         data.get(currentyear).put("WACCDetailedResultsEBITNumber",
                                 String.format("%.2f", EBITForTheYear));
 
+                        FreeCashFlow = EBITForTheYear * (1 - TaxRate)
+                                - ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) -
+                                BaseYearDepreciation / StraightLineDepreciationNumberOfYears
+                        ) - ChangeInNonCashWorkingCapital;
+
                     }
 
 
-                    double CurrentYearDepreciation = Double.valueOf(data.get(currentyear-1)
-                            .get("WACCDetailedResultsDepreciationNumber")) +
-                            (
-                                    ((double) ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue)/
-                                            StraightLineDepreciationNumberOfYears))
-                            );
-                    data.get(currentyear).put("WACCDetailedResultsDepreciationNumber",
-                            String.valueOf(CurrentYearDepreciation));
+                    //if the current year is less than or equal the avg number of depreciation years
+                    //DepT = [DepT–1] + [(1/N)CapexT]
+
+                    //otherwise, [DepT–1] + [(1/N)CapexT] – [DepT–N] for the years T > N
+                    //where T is the number of proforma periods, and N is the average depreciable life
+
+                    if (currentyear <= StraightLineDepreciationNumberOfYears) {
+                        double CurrentYearDepreciation = Double.valueOf(data.get(currentyear - 1)
+                                .get("WACCDetailedResultsDepreciationNumber")) +
+                                (
+                                        ((double) ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) /
+                                                StraightLineDepreciationNumberOfYears))
+                                );
+                        data.get(currentyear).put("WACCDetailedResultsDepreciationNumber",
+                                String.format("%.2f", CurrentYearDepreciation));
+                    } else {
+                        double CurrentYearDepreciation = Double.valueOf(data.get(currentyear - 1)
+                                .get("WACCDetailedResultsDepreciationNumber")) +
+                                (
+                                        ((double) ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) /
+                                                StraightLineDepreciationNumberOfYears))
+                                ) - (Double.valueOf(data.get(currentyear - StraightLineDepreciationNumberOfYears)
+                                .get("WACCDetailedResultsDepreciationNumber")));
+
+
+                        data.get(currentyear).put("WACCDetailedResultsDepreciationNumber",
+                                String.format("%.2f", CurrentYearDepreciation));
+
+
+                    }
+                }
+
+                ////assumption EBIT is provided, depreciation = straightline
+                if ((WACCDetailedObject.getOperatingIncomeOption()
+                        == "Will input percent EBIT (Operating Margin)"
+                        && WACCDetailedObject.getDepreciationOption()
+                        == "Will use straight line rule") && (currentyear > 0)){
+
+                    FreeCashFlow = (InitialEBITPercentageOfRevenue * CurrentYearRevenue)
+                            * (1 - TaxRate)
+                            - ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) -
+                            BaseYearDepreciation / StraightLineDepreciationNumberOfYears
+                    ) - ChangeInNonCashWorkingCapital;
+
+                    //Free Cash Flow (FCFF)
+
+                    data.get(currentyear).put("WACCDetailedResultsFreeCashFlowNumber",
+                            String.format("%.2f", FreeCashFlow));
+
+
                 }
 
 
-                FreeCashFlow = InitialEBITPercentageOfRevenue * (1 - TaxRate)
-                        - ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) -
-                        BaseYearDepreciation / StraightLineDepreciationNumberOfYears
-                ) - ChangeInNonCashWorkingCapital;
+
+
 
 
             }
 
 
 
-            //given multiple year input, different forecasted revenue numbers, different operating NWC calculated
-            //as a result, different changes in non-cash working capital is calculated
-            ChangeInNonCashWorkingCapital =
-                    CurrentYearWorkingCapital - YearEarlierWorkingCapital;
+
 
             //Set Change in Net Working Capital Here
             data.get(currentyear).put("WACCDetailedResultsChangeInNetWorkingCapitalNumber",
@@ -446,23 +500,18 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                 FreeCashFlow = InitialEBITPercentageOfRevenue * (1 - TaxRate)
                         - (CapitalExpenditurePercentageOfRevenue - BaseYearDepreciation
                 ) - ChangeInNonCashWorkingCapital;
+
+                //Free Cash Flow (FCFF)
+
+                data.get(currentyear).put("WACCDetailedResultsFreeCashFlowNumber",
+                        String.valueOf(FreeCashFlow));
             }
 
 
 
 
-            ////assumption EBIT is provided, depreciation = straightline
-            if (WACCDetailedObject.getOperatingIncomeOption()
-                    == "Will input percent EBIT (Operating Margin)"
-                    && WACCDetailedObject.getDepreciationOption()
-                    == "Will use straight line rule") {
 
-                FreeCashFlow = (InitialEBITPercentageOfRevenue * CurrentYearRevenue)
-                        * (1 - TaxRate)
-                        - ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) -
-                        BaseYearDepreciation / StraightLineDepreciationNumberOfYears
-                ) - ChangeInNonCashWorkingCapital;
-            }
+
 
 
             ////assumption EBIT is not provided, CustomEBIT, depreciation = capex
@@ -477,17 +526,23 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                         - ((CurrentYearRevenue * CapitalExpenditurePercentageOfRevenue) -
                         BaseYearDepreciation
                 ) - ChangeInNonCashWorkingCapital;
+
+                //Free Cash Flow (FCFF)
+
+                data.get(currentyear).put("WACCDetailedResultsFreeCashFlowNumber",
+                        String.valueOf(FreeCashFlow));
             }
 
-            //Free Cash Flow (FCFF)
 
-            data.get(currentyear).put("WACCDetailedResultsFreeCashFlowNumber",
-                    String.valueOf(FreeCashFlow));
 
 
 
 
             //Operating Cash Flow, this is Free Cash Flow (FCFF) + cash or capital expenditure
+            //Free Cash Flows To Firm Calculation
+            //Free Cash Flow to Firm (FCFF)
+            //EBIT(1-t) - (Capital Expenditures- Depreciation)
+            // //- Change in non-cash working capital
 
             data.get(currentyear).put("WACCDetailedResultsOperatingCashFlowNumber",
                     String.valueOf(FreeCashFlow +
@@ -518,7 +573,7 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
 
 
 
-                WACCDetailedObject.setWACC(0.0);
+                //WACCDetailedObject.setWACC(0.0);
 
                 DiscountFactor = (1.0 /
                         (1.0 + Math.pow(WACCDetailedObject.getWACC(), (double) currentyear)));

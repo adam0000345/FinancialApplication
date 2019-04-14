@@ -47,8 +47,10 @@ public class FirstScreenToShowMenuTest {
 
     //INPUT USED
     //first page default, 1990, 4, 100, revenuegrowth 4, initialperiod 5.00, lastperiodebit, 0.00
-    //capex 3%, operating NWC 0% , depreciation rule 3 years, tax rate: 3%, base year depreciation $10.00 million
-    //
+    //capex 3%, operating NWC 0% , depreciation rule 3 years, tax rate: 3%, base year depreciation $10.00 million,
+    //Cash is $10.00 million, Debt is $3.00 million, Market Cap is $30.00 million, number of shares is 55
+    // risk-free rate (%) is 5%, WACC is 5%, Terminal ROIC: 5%, Terminal Reinvestment Rate%: 5%,
+    // Term. Growth: 3%, Term WACC: 3%
 
 
 
@@ -374,8 +376,165 @@ public class FirstScreenToShowMenuTest {
                         isDisplayed()));
         appCompatImageButton3.perform(click());
 
+
         WACCDetailedTest  = onView(withText("WACCDetailed"));
         WACCDetailedTest.perform(click());
+
+
+        WACCDetailedTest  = onView(withText("WACCDetailedPageTerminalValue"));
+        WACCDetailedTest.perform(click());
+
+        ViewInteraction appCompatEditText25 = onView(
+                allOf(withId(R.id.WACCDetailedPageTerminalValueTerminalROICValue), withText("0.00")));
+        appCompatEditText25.perform(replaceText("5.00"));
+
+
+        ViewInteraction appCompatEditText26 = onView(
+                allOf(withId(R.id.WACCDetailedPageTerminalValueTerminalReinvestmentRateValue), withText("0.00")));
+        appCompatEditText26.perform(replaceText("5.00"));
+
+        ViewInteraction appCompatEditText27 = onView(
+                allOf(withId(R.id.WACCDetailedPageTerminalValueTerminalGrowthRateValue), withText("0.00")));
+        appCompatEditText27.perform(replaceText("3.00"));
+
+        ViewInteraction appCompatEditText28 = onView(
+                allOf(withId(R.id.WACCDetailedPageTerminalValueTerminalWACCValue), withText("0.00")));
+        appCompatEditText28.perform(replaceText("3.00"));
+
+        ViewInteraction floatingActionButtonOne = onView(
+                allOf(withId(R.id.fab),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("androidx.coordinatorlayout.widget.CoordinatorLayout")),
+                                        1),
+                                0),
+                        isDisplayed()));
+        floatingActionButtonOne.perform(click());
+
+
+
+        ViewInteraction appCompatImageButton4 = onView(
+                allOf(withContentDescription("Navigate up"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withId(R.id.content_frametitle),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton4.perform(click());
+
+        WACCDetailedTest  = onView(withText("WACCDetailed"));
+        WACCDetailedTest.perform(click());
+
+        WACCDetailedTest  = onView(withText("WACCDetailedPageCostOfCapitalInputs"));
+        WACCDetailedTest.perform(click());
+
+        ViewInteraction appCompatEditText29 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalCashValue), withText("0.00"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                2)));
+        appCompatEditText29.perform(scrollTo(), replaceText("10.00"));
+
+        ViewInteraction appCompatEditText30 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalCashValue), withText("10.00"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                2),
+                        isDisplayed()));
+        appCompatEditText30.perform(closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText31 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalDebtValue), withText("0.00"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                4)));
+        appCompatEditText31.perform(scrollTo(), replaceText("3.00"));
+
+        ViewInteraction appCompatEditText32 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalDebtValue), withText("3.00"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                4),
+                        isDisplayed()));
+        appCompatEditText32.perform(closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText33 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalMarketCapValue), withText("0.00"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                8)));
+        appCompatEditText33.perform(scrollTo(), replaceText("30.00"));
+
+        ViewInteraction appCompatEditText34 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalMarketCapValue), withText("30.00"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.ScrollView")),
+                                        0),
+                                8),
+                        isDisplayed()));
+        appCompatEditText34.perform(closeSoftKeyboard());
+
+
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatEditText35 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalNumberOfSharesValue), withText("0")));
+        appCompatEditText35.perform(scrollTo(), replaceText(""));
+
+
+
+        Espresso.onView(ViewMatchers.withId(R.id.scrollviewcostofcapital)).perform(ViewActions.swipeUp());
+
+
+        ViewInteraction appCompatEditText38 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalRiskFreeRateValue), withText("0.00")));
+        appCompatEditText38.perform(scrollTo(), replaceText("5.00"));
+
+
+
+
+        ViewInteraction appCompatEditText40 = onView(
+                allOf(withId(R.id.WACCDetailedPageCostOfCapitalWeightedAverageCostOfCapitalValue), withText("0.00")));
+        appCompatEditText40.perform(scrollTo(), replaceText("5.00"));
+
+
+
+        ViewInteraction appCompatImageButton5 = onView(
+                allOf(withContentDescription("Navigate up"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withId(R.id.content_frametitle),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton5.perform(click());
+
+
+        WACCDetailedTest  = onView(withText("WACCDetailed"));
+        WACCDetailedTest.perform(click());
+
 
         WACCDetailedTest  = onView(withText("WACCDetailedPageResults"));
         WACCDetailedTest.perform(click());

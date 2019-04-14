@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 public class WACCDetailedPageTerminalValue extends FirstScreenToShowMenu {
 
 
@@ -244,6 +247,35 @@ public class WACCDetailedPageTerminalValue extends FirstScreenToShowMenu {
 //                                    .getText().toString()));
                     //Log.d("TEST", getWaccDetailedObject().getCompanyName());
                 }
+
+            }
+        });
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //leverage the Snackbar to make user aware of any errors in their data
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Data Submitted", null).show();
+
+                //Add all the model data here
+                WACCDetailedObject.setCash(Double.parseDouble(
+                        WACCDetailedPageTerminalValueTerminalROICValue.getText().toString()));
+
+
+                WACCDetailedObject.setDebt(Double.parseDouble(
+                        WACCDetailedPageTerminalValueTerminalReinvestmentRateValue.getText().toString()));
+
+                WACCDetailedObject.setMarketCapitalization(Double.parseDouble(
+                        WACCDetailedPageTerminalValueTerminalGrowthRateValue.getText().toString()));
+
+
+                WACCDetailedObject.setEquityBeta(Double.parseDouble(
+                        WACCDetailedPageTerminalValueTerminalWACCValue.getText().toString()));
+
+
+
 
             }
         });

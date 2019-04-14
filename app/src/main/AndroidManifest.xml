@@ -76,6 +76,12 @@
             android:name=".WACCDetailedPageResults"
             android:label="Financial Modeling App"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="Financial Modeling App"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <activity
             android:name=".MainMenu"
             android:label="Financial Modeling App"
