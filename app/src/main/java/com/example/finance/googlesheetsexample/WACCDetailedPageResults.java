@@ -572,22 +572,20 @@ public class WACCDetailedPageResults extends FirstScreenToShowMenu {
                 //testing
 
 
-
-                //WACCDetailedObject.setWACC(0.0);
-
-                DiscountFactor = (1.0 /
-                        (1.0 + Math.pow(WACCDetailedObject.getWACC(), (double) currentyear)));
+                Log.v("testerx", String.valueOf(WACCDetailedObject.getWACC()));
+                DiscountFactor = (1.0 / Math.pow(1.0 + (WACCDetailedObject.getWACC() *.01), (double) currentyear));
 
                 data.get(currentyear).put("WACCDetailedResultsDiscountFactorNumber",
-                        String.valueOf(DiscountFactor));
+                        String.format("%.2f", DiscountFactor));
 
                 //Discount future cash flows to their present values
                 //Presentvalue = Expected Cash Flow ÷ (1+Discount Rate)^Number of periods
                 Presentvalue = FreeCashFlow /
-                        (1.0+Math.pow(WACCDetailedObject.getWACC(), (double) currentyear));
+                        (1.0+Math.pow(WACCDetailedObject.getWACC(), (double)
+                                WACCDetailedObject.getNumberOfForecastPeriods()));
 
                 data.get(currentyear).put("WACCDetailedResultsPVNumber",
-                        String.valueOf(Presentvalue));
+                        String.format("%.2f", Presentvalue));
             }
 
         }
